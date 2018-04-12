@@ -6,6 +6,8 @@
 	<title><?= $title ?></title>
 </head>
 <body>
+	<?= $header ?>
 	<?= $content ?>
+	<?php include_once('footer.php') ?>
 </body>
 </html>
