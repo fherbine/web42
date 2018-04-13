@@ -1,0 +1,3 @@
+<?php
+//   if $_get ...
+require_once('views/indexView.php');

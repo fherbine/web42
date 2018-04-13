@@ -1,0 +1,25 @@
+body
+{
+	background-image: url('http://www.litury.com/wp-content/uploads/2017/12/fond-d-ecran-paysage-pour-pc.jpg');
+	background-size: cover;
+	max-width: 100%;
+	height: auto;
+}
+
+.begin_drop
+{
+	width:30%;
+	margin: auto;
+}
+
+.begin_hide
+{
+	color:red;
+	display: none;
+}
+
+.begin_drop:hover .begin_hide
+{
+	color : green;
+	display:block;
+}
