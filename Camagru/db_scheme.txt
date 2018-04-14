@@ -1,6 +1,6 @@
 ================================================= DB_SCHEME ====================================================
 
 
- passwd >>  [id, email, passwd, f_name, l_name, birth, signup_date]
+ passwd >>  [id, email, passwd, f_name, l_name, sign_date, admin, sumup]
  imgs >>	[id, auth, date, content, nlikes, ncoms, ndown]
  img_com >>	[id, img_id, date, auth, content, likes, ndown]
