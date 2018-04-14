@@ -7,7 +7,14 @@
 	<title><?= $title ?></title>
 </head>
 <body>
-	<?= $header ?>
+	<header>
+		<div>
+			<h1>PhotoBooth 42</h1>
+			<div class = ".rheader">
+				<?= $header_content ?>
+			</div>
+		</div>
+	</header>
 	<?= $content ?>
 	<?php include_once('footer.php') ?>
 </body>
