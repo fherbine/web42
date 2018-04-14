@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="public/css/style.css" />
-	<link rel="stylesheet" type="text/css" href=<?= $page_style ?> />
+	<?= $ext_head ?>
 	<title><?= $title ?></title>
 </head>
 <body>

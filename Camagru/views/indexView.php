@@ -1,7 +1,10 @@
 <?php
 $title = "photobooth42 - Index";
-$page_style = "public/css/index.css";
 ?>
+
+<?php ob_start(); ?>
+	<link rel="stylesheet" type="text/css" href="public/css/index.css"/>
+<?php $ext_head = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 	<div class = "begin_drop"><a href="#">Begin the experience</a>
