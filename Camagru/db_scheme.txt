@@ -2,5 +2,5 @@
 
 
  passwd >>  [id, email, passwd, f_name, l_name, sign_date, admin, sumup]
- imgs >>	[id, auth, date, content, nlikes, ncoms, ndown]
- img_com >>	[id, img_id, date, auth, content, likes, ndown]
+ imgs >>	[id, auth, date, content, rate, ncoms]
+ img_com >>	[id, img_id, date, auth, content, rate]
