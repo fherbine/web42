@@ -8,11 +8,9 @@
 </head>
 <body>
 	<header>
-		<div>
-			<h1>PhotoBooth 42</h1>
-			<div class = ".rheader">
-				<?= $header_content ?>
-			</div>
+		<a href="index.php"><h1>PhotoBooth 42</h1></a>
+		<div class = "rheader">
+			<?= $header_content ?>
 		</div>
 	</header>
 	<?= $content ?>

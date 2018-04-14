@@ -3,7 +3,7 @@ $title = "photobooth42 - Index";
 ?>
 
 <?php ob_start(); ?>
-	<!-- <link rel="stylesheet" type="text/css" href="public/css/index.css"/> -->
+	<!-- <link rel="stylesheet" type="text/css" href="public/css/log.css"/> -->
 <?php $ext_head = ob_get_clean(); ?>
 
 <!-- right header content -->

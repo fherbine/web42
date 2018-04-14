@@ -1,0 +1,17 @@
+header
+{
+	display: flex;
+	flex-direction: raw;
+	justify-content: space-between;
+}
+
+.rheader
+{
+	margin: auto;
+	margin-right: 5px;
+}
+
+.rheader a:hover
+{
+	color: lightgrey;
+}
