@@ -4,3 +4,4 @@
  passwd >>  [id, email, passwd, pseudo, sign_date, admin, sumup, confirm, confirm_key]
  imgs >>	[id, auth, date, content, rate, ncoms]
  img_com >>	[id, img_id, date, auth, content, rate]
+ img_vote >> [id, img_id, uid, stat(0->down, 1->up)]
