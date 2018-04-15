@@ -1,28 +1,27 @@
 <?php
 // session_start();
-require_once('config/database.php');
 
 class LogManager
 {
-	public function login($email, $password)
+	public function logUsr($email, $password)
 	{
 		$db = $this->dbConnect();
-		$request = prepare('SELECT * FROM passwd WHERE email = :email AND password = :password AND confirm = 1');
+		$request = $db->prepare('SELECT * FROM passwd WHERE email = :email AND passwd = :password AND confirm = 1');
 		$request->execute(array('email' => $email, 'password' => hash('whirlpool', $password)));
 		if ($request->fetch())
-			echo "okok";
+			return "okok";
 		else
-			echo "error";
+			return "error";
 	}
 
-	public function sigup($email, $password, $pseudo, $admin)
+	public function newUsr($email, $password, $pseudo, $admin)
 	{
 		$db = $this->dbConnect();
-		$exist = prepare('SELECT * FROM passwd WHERE email = ?');
+		$exist = $db->prepare('SELECT * FROM passwd WHERE email = ?');
 		$exist->execute(array($email));
 		if (!($exist->fetch()))
 		{
-			$request = prepare('INSERT INTO passwd(email, passwd, pseudo, sign_date, admin, sumup, confirm, confirm_key)
+			$request = $db->prepare('INSERT INTO passwd(email, passwd, pseudo, sign_date, admin, sumup, confirm, confirm_key)
 				VALUES(:email, :password, :pseudo, NOW(), :admin, :sumup, :confirm, :confirm_key)');
 			$request->execute(array('email' => $email,
 								'password' => hash('whirlpool', $password),
@@ -32,17 +31,20 @@ class LogManager
 								'confirm' => 0,
 								'confirm_key' => 22222
 							)); ///////////////////////// -------------------------------- rand -> conf key
+			return 'ok';
 		}
 		else
-			echo "usr already exist"; ///// -------------------------------------------
+			return "usr already exist"; ///// -------------------------------------------
 	}
 
 	private function dbConnect()
 	{
+		include('config/database.php');
 		try
 		{
 			$db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			return $db;
 		}
 		catch(PDOException $e)
 		{
