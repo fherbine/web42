@@ -23,3 +23,8 @@ function signup()
 	else
 		echo "An error occurred, check if your inputs are not empty and try again.";
 }
+function activation()
+{
+	$result = new LogManager();
+	$result->confirmAccount($_GET['key'], $_GET['login']);
+}
