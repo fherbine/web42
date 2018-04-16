@@ -15,7 +15,7 @@ class LogManager
 			$_SESSION['email'] = $user_info['email']; 
 			$_SESSION['sumup'] = $user_info['sumup']; 
 			$_SESSION['logged_on_user'] = true;
-			$_SESSION['logged_on_admin'] = ($user_info['admin'] = 0) ? false : true; 
+			$_SESSION['logged_on_admin'] = ($user_info['admin'] = '0') ? false : true; 
 		}
 		else
 			return "error";

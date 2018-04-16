@@ -7,8 +7,12 @@ header
 
 .rheader
 {
+	width:20%;
 	margin: auto;
 	margin-right: 5px;
+	display:flex;
+	flex-direction:raw;
+	justify-content: space-around;
 }
 
 .rheader a:hover
