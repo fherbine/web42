@@ -1,7 +1,6 @@
 <?php
 	session_start();
 	require_once('controllers/passwd.php');
-	var_dump($_SESSION);
 
 	if ($_GET['page'] === "log")
 		require_once('views/log.php');
@@ -25,5 +24,7 @@
 		sendRstMail();
 	elseif ($_GET['page'] === "reset_pwd" && !$_SESSION['logged_on_user'])
 		require_once('views/reset_pwd.php');
+	elseif ($_GET['action'] === "logout")
+	{ session_destroy(); header('Location: index.php'); }
 	else
 		require_once('views/indexView.php');

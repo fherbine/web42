@@ -6,6 +6,12 @@ $title = "photobooth42 - Take a picture";
 	<link rel="stylesheet" type="text/css" href="public/css/take_pic.css">
 <?php $ext_head = ob_get_clean(); ?>
 
+<?php ob_start(); ?>
+	<a href="index.php?page=add_pic" title="add">ADD</a>
+	<a href="index.php?page=profil" title="profil">PROFIL</a>
+	<a href="index.php?page=account" title="account">ACCOUNT</a>
+	<a href="index.php?action=logout" title="logout">LOGOUT</a>
+<?php $header_content = ob_get_clean(); ?>
 
 <!-- Main content -->
 
