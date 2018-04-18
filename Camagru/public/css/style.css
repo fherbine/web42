@@ -24,3 +24,25 @@ footer
 	width: 99%;
 	margin: auto;
 }
+
+header
+{
+	display: flex;
+	flex-direction: raw;
+	justify-content: space-between;
+}
+
+.rheader
+{
+	width:20%;
+	margin: auto;
+	margin-right: 5px;
+	display:flex;
+	flex-direction:raw;
+	justify-content: space-around;
+}
+
+.rheader a:hover
+{
+	color: lightgrey;
+}
