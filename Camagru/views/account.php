@@ -22,6 +22,14 @@ if ($_SESSION['logged_on_user'] === true):?>
 <!-- Main view -->
 
 <?php ob_start(); ?>
+	<h2>Public settings</h2>
+	<!-- profil pic ? -->
+	<form>
+		<label for="sumup">Edit your bio:</label>
+		<textarea id="sumup" name="sumup" ><?= $_SESSION['sumup'] ?></textarea>
+		<input type="submit" name="submit" />
+	</form>
+	<hr/>
 	<h2>Account settings</h2>
 	<div>
 		<h3>Change your password:</h3>
@@ -40,7 +48,6 @@ if ($_SESSION['logged_on_user'] === true):?>
 			<input type="submit" name="submit" value="DELETE" />
 		</form>
 	</div>
-	<hr/>
 <?php $content = ob_get_clean(); ?>
 
 
