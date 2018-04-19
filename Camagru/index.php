@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require_once('controllers/passwd.php');
+	require_once('controllers/imgs.php');
 
 	if ($_GET['page'] === "log")
 		require_once('views/log.php');
@@ -28,5 +29,7 @@
 	{ session_destroy(); header('Location: index.php'); }
 	elseif ($_GET['action'] === "update_account" && $_SESSION['logged_on_user'] === true)
 			updateAccount();
+	elseif ($_GET['action'] === "postPic" && $_SESSION['logged_on_user'] === true)
+		 sendNewPic();
 	else
 		require_once('views/indexView.php');

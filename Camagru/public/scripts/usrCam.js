@@ -1,4 +1,41 @@
-	
+function activeXHR()
+{
+	var xhr;
+
+	if (window.ActiveXObject)
+	{
+		try
+		{
+			xhr = new ActiveXObject("Msxml2.XMLHTTP");
+		}
+		catch(e)
+		{
+			xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	}
+	else if (window.XMLHttpRequest)
+		xhr = new XMLHttpRequest();
+	else
+	{
+		alert("Your web browser do not support XMLHttpRequest");
+		return null;
+	}
+	return xhr;
+}
+
+function postImg(content)
+{
+	var xhr = activeXHR();
+
+	content = encodeURIComponent(content);
+
+	if (xhr)
+	{
+		xhr.open("POST", "index.php?action=postPic", true);
+		xhr.send("camContent=" + content);
+	}
+}
+
 const constraints = {
   video: true
 };
@@ -26,19 +63,17 @@ button.addEventListener("click", function()
 			select = '<button id="keep-it" >KEEP THIS</a>';
 			document.getElementById('buttons').innerHTML += select;
 		}
-		console.log(img.src.length); //////////////////// debug size
-		console.log(btoa(ctx.getImageData(10,10,50,50).data).length); //////////////////////// debug size
-		keepit();
+		keepit(img.src.split(',')[1]);
 	}
 );
 
-function keepit()
+function keepit(content)
 {
 	var keep = document.getElementById('keep-it');
 
 	keep.addEventListener("click", function()
 		{
-			console.log("toto");
+			postImg(content);
 		}
 	);
 }
