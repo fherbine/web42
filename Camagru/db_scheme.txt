@@ -5,3 +5,4 @@
  imgs >>	[id, auth, date, content, rate, ncoms]
  img_com >>	[id, img_id, date, auth, content, rate]
  img_vote >> [id, img_id, uid, stat(0->down, 1->up)]
+ img_com_vote >> [id, img_id, uid, stat(0->down, 1->up)]
