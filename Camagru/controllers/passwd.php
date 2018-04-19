@@ -65,3 +65,9 @@ function sendRstMail()
 	if (isset($_POST['email']))
 		$result->forgotPw($_POST['email']);
 }
+
+function updateAccount()
+{
+	$result = new AccountManager();
+	$result->updateBio($_POST['sumup'], $_SESSION['login']);
+}

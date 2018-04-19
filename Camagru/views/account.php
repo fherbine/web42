@@ -24,7 +24,7 @@ if ($_SESSION['logged_on_user'] === true):?>
 <?php ob_start(); ?>
 	<h2>Public settings</h2>
 	<!-- profil pic ? -->
-	<form>
+	<form method="POST" action="index.php?action=update_account">
 		<label for="sumup">Edit your bio:</label>
 		<textarea id="sumup" name="sumup" ><?= $_SESSION['sumup'] ?></textarea>
 		<input type="submit" name="submit" />

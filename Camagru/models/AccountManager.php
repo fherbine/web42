@@ -91,6 +91,25 @@ class AccountManager
 			return false;
 	}
 
+	public function updateBio($newBio, $login)
+	{
+		$db = $this->dbConnect();
+		try
+		{
+			$request = $db->prepare('UPDATE passwd SET sumup = :bio WHERE pseudo = :log');
+			$request->execute(array(
+				'bio' => $newBio,
+				'log' => $login
+			));
+			$_SESSION['sumup'] = ($request->rowCount()) ? $newBio : $_SESSION['sumup'];
+			header('Location: index.php?page=account');
+		}
+		catch(Exception $e)
+		{
+			echo "cannot update your bio.";
+		}
+	}
+
 	private function dbConnect()
 	{
 		include('config/database.php');
