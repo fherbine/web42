@@ -36,7 +36,7 @@ function activation()
 function changePw()
 {
 	$result = new AccountManager();
-	if (isset($_GET['key']) && !$_SESSION['logged_on_user'] && $_POST['npasswd'] === $_POST['cnpasswd'])
+	if (isset($_GET['key']) && !isset($_SESSION['logged_on_user']) && $_POST['npasswd'] === $_POST['cnpasswd'])
 		$result->changePasswd(1, $_POST['npasswd'], null, $_GET['key']);
 	else if(isset($_POST['old_passwd']) && isset($_POST['new_pass']) && $_POST['new_pass'] === $_POST['new_passc'])
 	{

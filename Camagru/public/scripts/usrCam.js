@@ -31,7 +31,7 @@ function postImg(content)
 
 	if (xhr)
 	{
-		xhr.open("POST", "index.php?action=postPic");
+		xhr.open("POST", "index.php?action=postPic", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.send("camContent=" + content);
 	}
@@ -58,7 +58,7 @@ button.addEventListener("click", function()
 		canvas.height = height;
 		ctx = canvas.getContext('2d');
 		ctx.drawImage(video, 0, 0, width, height);
-		img.src = canvas.toDataURL('image/webp');
+		img.src = canvas.toDataURL('image/png');
 		if (!document.getElementById('keep-it'))
 		{
 			select = '<button id="keep-it" >KEEP THIS</a>';

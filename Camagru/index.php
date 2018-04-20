@@ -15,15 +15,15 @@
 		require_once('views/add_pic.php');
 	elseif (isset($_GET['page']) && $_GET['page'] === "account" && $_SESSION['logged_on_user'] === true)
 		require_once('views/account.php');
-	elseif (isset($_GET['action']) && $_GET['action'] === "newpw" && $_SESSION['logged_on_user'] === true)
+	elseif (isset($_GET['action']) && $_GET['action'] === "newpw")
 		changePw();
 	elseif (isset($_GET['action']) && $_GET['action'] === "rm_acc" && $_SESSION['logged_on_user'] === true)
 		delAccount();
-	elseif (isset($_GET['page']) &&  $_GET['page'] === "reset_mail" && !$_SESSION['logged_on_user'])
+	elseif (isset($_GET['page']) &&  $_GET['page'] === "reset_mail" && !isset($_SESSION['logged_on_user']))
 		require_once('views/reset_mail.php');
 	elseif (isset($_GET['action']) && $_GET['action'] === "send_rst_mail")
 		sendRstMail();
-	elseif (isset($_GET['page']) && $_GET['page'] === "reset_pwd" && !$_SESSION['logged_on_user'])
+	elseif (isset($_GET['page']) && $_GET['page'] === "reset_pwd" && !isset($_SESSION['logged_on_user']))
 		require_once('views/reset_pwd.php');
 	elseif (isset($_GET['action']) && $_GET['action'] === "logout")
 	{ session_destroy(); header('Location: index.php'); }
@@ -31,5 +31,7 @@
 		updateAccount();
 	elseif (isset($_GET['action']) && $_GET['action'] === "postPic" && $_SESSION['logged_on_user'] === true)
 		sendNewPic();
+	elseif (isset($_GET['page']) && $_GET['page'] === "profil" && $_SESSION['logged_on_user'])
+		getUsrPics();
 	else
 		require_once('views/indexView.php');

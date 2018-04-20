@@ -14,3 +14,13 @@ function sendNewPic()
 	// else
 		// $result->sendImg($_POST['content'], $auth);
 }
+
+function getUsrPics()
+{
+	$result = new PostPicsManager();
+
+	$req_res = $result->getUsrImg($_SESSION['login']);
+	// $req_res[] = array_map("base64_encode", $req_res[]);
+
+	require_once('views/profilView.php');
+}
