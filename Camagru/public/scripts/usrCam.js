@@ -31,7 +31,8 @@ function postImg(content)
 
 	if (xhr)
 	{
-		xhr.open("POST", "index.php?action=postPic", true);
+		xhr.open("POST", "index.php?action=postPic");
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.send("camContent=" + content);
 	}
 }

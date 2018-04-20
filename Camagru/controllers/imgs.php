@@ -7,7 +7,10 @@ function sendNewPic()
 	$auth = $_SESSION['login'];
 
 	if (isset($_POST['camContent']))
+	{
+		echo "tutu";
 		$result->sendImg(base64_decode($_POST['camContent']), $auth);
-	else
-		$result->sendImg($_POST['content'], $auth);
+	}
+	// else
+		// $result->sendImg($_POST['content'], $auth);
 }

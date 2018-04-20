@@ -18,7 +18,7 @@ class PostPicsManager
 		}
 		catch (Exception $e)
 		{
-			die('an error occured during image uploading');
+			echo 'an error occured during image uploading' . $e->getMessage();
 		}
 	}
 
@@ -33,7 +33,7 @@ class PostPicsManager
 		}
 		catch(PDOException $e)
 		{
-			die('An error occured during the db connection : ' . $e->getMessage());
+			echo 'An error occured during the db connection : ' . $e->getMessage();
 		}
 	}
 }
