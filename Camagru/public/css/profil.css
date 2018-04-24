@@ -8,6 +8,8 @@ article
 {
 	padding :5px;
 	border: 1px outset grey;
+	min-width: 275px;
+	max-width: 350px;
 	width: 30%;
 	margin-top: 10px;
 	margin-bottom: 10px;
