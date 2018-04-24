@@ -34,4 +34,4 @@
 	elseif (isset($_GET['page']) && $_GET['page'] === "profil" && $_SESSION['logged_on_user'])
 		getUsrPics();
 	else
-		require_once('views/indexView.php');
+		getPics();

@@ -1,0 +1,30 @@
+article
+{
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.img_box
+{
+	padding :5px;
+	border: 1px outset grey;
+	width: 30%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: 1px 1px lightgrey;
+}
+.img_box h3
+{
+	text-align: center;
+}
+img
+{
+	width:100%;
+}
+
+.icons
+{
+	width:50%;
+	display: flex;
+	font-size: 1.8vw;
+}

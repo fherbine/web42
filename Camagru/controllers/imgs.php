@@ -24,3 +24,13 @@ function getUsrPics()
 
 	require_once('views/profilView.php');
 }
+
+function getPics()
+{
+	$result = new PostPicsManager();
+
+	$req_res = $result->getAllImg();
+	// $req_res[] = array_map("base64_encode", $req_res[]);
+
+	require_once('views/indexView.php');
+}

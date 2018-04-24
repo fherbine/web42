@@ -22,15 +22,21 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 <!-- Main view -->
 
 <?php ob_start(); ?>
-
-	<!-- <div class = "begin_drop"><a href="#">Begin the experience</a> -->
-		<!-- <div class = "begin_hide"> -->
-			<!-- <p>tutu<p> -->
-			<!-- <p>tutu<p> -->
-			<!-- <p>tutu<p> -->
-		<!-- </div> -->
-	<!-- </div> -->
-
+	<section>
+		<article>
+			<?php foreach($req_res as $uimg): ?>
+				<div class="img_box">
+					<h3><?= $uimg['auth'] ?></h3>
+					<img alt=<?= '"' . $uimg['auth'] . "-img-" . $uimg['up_date'] . '"' ?> src=<?= '"data:image/png;charset:utf-8;base64,' . base64_encode($uimg['content']) . '"'?> />
+					<p><?=$uimg['up_date']?></p>
+					<div class="icons">
+						<p><a href="#">♥</a><?= $uimg['rate']?></p>
+						<p><a href="#">💬</a><?= $uimg['ncoms'] ?></p>
+					</div>
+				</div>
+			<?php endforeach; ?>
+		</article>
+	</section>
 <?php $content = ob_get_clean(); ?>
 
 

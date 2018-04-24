@@ -41,6 +41,25 @@ class PostPicsManager
 
 	}
 
+	public function getAllImg()
+	{
+		$db = $this->dbConnect();
+		$req_res = array();
+		try
+		{
+			$req = $db->query('SELECT DATE_FORMAT(upload_date, \'%Y/%m/%d at %Hh%i\') AS up_date, content, rate, ncoms, auth FROM imgs');
+			if ($req->rowCount())
+				$req_res = $req->fetchAll();
+			return $req_res;
+		}
+		catch (Exception $e)
+		{
+			echo "An error occured when tried to get datas: " . $e->getMessage();
+		}
+
+	}
+
+
 	private function dbConnect()
 	{
 		include('config/database.php');
