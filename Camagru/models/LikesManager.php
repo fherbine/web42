@@ -38,7 +38,7 @@ class LikesManager
 			{
 				$req2 = $db->prepare('UPDATE imgs SET rate = (rate + 1) WHERE uid = ? AND id = ?');
 				$req2->execute(array($uid, $img_id));
-				echo "okok";
+				header("Location: index.php");
 			}
 			catch (Exception $e)
 			{
