@@ -28,7 +28,7 @@ $title = "photobooth42 - profil";
 					<img alt=<?= '"' . $_SESSION['login'] . "-img-" . $uimg['up_date'] . '"' ?> src=<?= '"data:image/png;charset:utf-8;base64,' . base64_encode($uimg['content']) . '"'?> />
 					<p><?=$uimg['up_date']?></p>
 					<div class="icons">
-						<p><a href="#">♥</a><?= $uimg['rate']?></p>
+						<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?>>♥</a><?= $uimg['rate']?></p>
 						<p><a href="#">💬</a><?= $uimg['ncoms'] ?></p>
 					</div>
 				</div>

@@ -3,14 +3,15 @@
 class PostPicsManager
 {
 
-	public function sendImg($content, $auth)
+	public function sendImg($content, $auth, $uid)
 	{
 		$db = $this->dbConnect();
 		try
 		{
-			$req = $db->prepare('INSERT INTO imgs(auth, upload_date, content, rate, ncoms) VALUES(:auth, NOW(), :content, :rate, :ncoms)');
+			$req = $db->prepare('INSERT INTO imgs(auth, uid, upload_date, content, rate, ncoms) VALUES(:auth, :uid, NOW(), :content, :rate, :ncoms)');
 			$req->execute(array(
 				'auth' => $auth,
+				'uid' => $uid,
 				'content' => $content,
 				'rate' => 0,
 				'ncoms' => 0
@@ -28,7 +29,7 @@ class PostPicsManager
 		$req_res = array();
 		try
 		{
-			$req = $db->prepare('SELECT DATE_FORMAT(upload_date, \'%Y/%m/%d at %Hh%i\') AS up_date, content, rate, ncoms FROM imgs WHERE auth = ?');
+			$req = $db->prepare('SELECT id, DATE_FORMAT(upload_date, \'%Y/%m/%d at %Hh%i\') AS up_date, content, rate, ncoms FROM imgs WHERE auth = ?');
 			$req->execute(array($user));
 			if ($req->rowCount())
 				$req_res = $req->fetchAll();
@@ -47,7 +48,7 @@ class PostPicsManager
 		$req_res = array();
 		try
 		{
-			$req = $db->query('SELECT DATE_FORMAT(upload_date, \'%Y/%m/%d at %Hh%i\') AS up_date, content, rate, ncoms, auth FROM imgs');
+			$req = $db->query('SELECT id, DATE_FORMAT(upload_date, \'%Y/%m/%d at %Hh%i\') AS up_date, content, rate, ncoms, auth FROM imgs');
 			if ($req->rowCount())
 				$req_res = $req->fetchAll();
 			return $req_res;

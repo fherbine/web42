@@ -30,7 +30,9 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 					<img alt=<?= '"' . $uimg['auth'] . "-img-" . $uimg['up_date'] . '"' ?> src=<?= '"data:image/png;charset:utf-8;base64,' . base64_encode($uimg['content']) . '"'?> />
 					<p><?=$uimg['up_date']?></p>
 					<div class="icons">
-						<p><a href="#">♥</a><?= $uimg['rate']?></p>
+						<?php if (isset($_SESSION['logged_on_user'])): ?>
+							<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?>>♥</a><?= $uimg['rate']?></p>
+						<?php endif; ?>
 						<p><a href="#">💬</a><?= $uimg['ncoms'] ?></p>
 					</div>
 				</div>
