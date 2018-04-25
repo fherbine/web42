@@ -48,7 +48,7 @@ const video = document.querySelector('#screenshot-video');
 const canvas = document.createElement('canvas');
 
 var select, getImg;
-const width = 2800;
+const width = 400;
 var height = 0;
 
 button.addEventListener("click", function()

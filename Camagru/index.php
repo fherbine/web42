@@ -28,9 +28,9 @@
 		require_once('views/reset_pwd.php');
 	elseif (isset($_GET['action']) && $_GET['action'] === "logout")
 	{ session_destroy(); header('Location: index.php'); }
-	elseif (isset($_GET['action']) && $_GET['action'] === "update_account" && $_SESSION['logged_on_user'] === true)
+	elseif (isset($_GET['action']) && $_GET['action'] === "update_account" && isset($_SESSION['logged_on_user']))
 		updateAccount();
-	elseif (isset($_GET['action']) && $_GET['action'] === "postPic" && $_SESSION['logged_on_user'] === true)
+	elseif (isset($_GET['action']) && $_GET['action'] === "postPic" && isset($_SESSION['logged_on_user']))
 		sendNewPic();
 	elseif (isset($_GET['page']) && $_GET['page'] === "profil" && $_SESSION['logged_on_user'])
 		getUsrPics();
