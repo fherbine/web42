@@ -33,7 +33,10 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 						<?php if (isset($_SESSION['logged_on_user'])): ?>
 							<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?>>♥</a><?= $uimg['rate']?></p>
 						<?php endif; ?>
-						<p><a href="#">💬</a><?= $uimg['ncoms'] ?></p>
+						<?php foreach ($uimg['coms'] as $com): ?>
+							<!-- test !!!!!!!!!!!!!!!!!!! -->
+							<?php echo $com['content']; ?>
+						<?php endforeach; ?>
 					</div>
 				</div>
 			<?php endforeach; ?>

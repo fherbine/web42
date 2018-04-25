@@ -1,4 +1,5 @@
 <?php
+require_once('models/CommentsManager.php');
 require_once('models/PostPicsManager.php');
 
 function sendNewPic()
@@ -26,8 +27,15 @@ function getUsrPics()
 function getPics()
 {
 	$result = new PostPicsManager();
+	$res_com = new CommentsManager();
+	$pics = array();
 
 	$req_res = $result->getAllImg();
+	foreach ($req_res as $master => $value)
+	{
+		$req_res[$master]['coms'] = $res_com->getImgCom($master['id'], 0);
+		// var_dump($master);
+	}
 	// $req_res[] = array_map("base64_encode", $req_res[]);
 
 	require_once('views/indexView.php');
