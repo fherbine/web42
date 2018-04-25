@@ -3,6 +3,6 @@
 
  passwd >>  [id, email, passwd, pseudo, sign_date, admin, sumup, confirm, confirm_key]
  imgs >>	[id, auth, upload_date, content, rate, ncoms]
- img_com >>	[id, img_id, date, auth, content, rate]
+ img_com >>	[id, img_id, date_com, auth, content, rate]
  img_vote >> [img_id, uid]
  img_com_vote >> [img_id, uid]
