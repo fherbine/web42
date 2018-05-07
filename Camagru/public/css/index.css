@@ -24,9 +24,33 @@ img
 	width:100%;
 }
 
+.under
+{
+	display: flex;
+	flex-direction: column;
+	font-size: 1.8vw;
+}
+
+.com_head
+{
+	display: flex;
+	flex-direction: raw;
+	justify-content: space-between;
+}
+
+.com_head p
+{
+	margin:0px;
+}
+
+.com
+{
+	border-bottom: 1px solid black;
+	margin-bottom: 5px;
+}
+
 .icons
 {
-	width:50%;
 	display: flex;
 	font-size: 1.8vw;
 }
