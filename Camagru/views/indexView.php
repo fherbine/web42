@@ -30,17 +30,20 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 					<img alt=<?= '"' . $uimg['auth'] . "-img-" . $uimg['up_date'] . '"' ?> src=<?= '"data:image/png;charset:utf-8;base64,' . base64_encode($uimg['content']) . '"'?> />
 					<p><?=$uimg['up_date']?></p>
 					<div class="icons">
-						<?php if (isset($_SESSION['logged_on_user'])): ?>
-							<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?>>♥</a><?= $uimg['rate']?></p>
-						<?php endif; ?>
 						<?php foreach ($uimg['coms'] as $com): ?>
-							<!-- test !!!!!!!!!!!!!!!!!!! -->
-							<?php echo $com['content']; ?>
+							<p><?= $com['d_com'] ?></p>
+							<h4><?= $com['auth'] ?></h4>
+							<p><?= $com['content'] ?></p>
 						<?php endforeach; ?>
-						<form method="post" action="#">
-							<textarea name="com"></textarea>
-							<input type="submit" name="submit" value="OK" />
-						</form>
+						<div>
+							<?php if (isset($_SESSION['logged_on_user'])): ?>
+								<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?>>♥</a><?= $uimg['rate']?></p>
+							<?php endif; ?>
+							<form method="post" action=<?= '"index.php?action=postCom&img_id=' . $uimg['id'] . '"' ?>>
+								<textarea name="com"></textarea>
+								<input type="submit" name="submit" value="OK" />
+							</form>
+						</div>
 					</div>
 				</div>
 			<?php endforeach; ?>

@@ -3,6 +3,7 @@
 	require_once('controllers/passwd.php');
 	require_once('controllers/imgs.php');
 	require_once('controllers/img_vote.php');
+	require_once('controllers/img_com.php');
 
 	if (isset($_GET['page']) && $_GET['page'] === "log")
 		require_once('views/log.php');
@@ -36,5 +37,7 @@
 		getUsrPics();
 	elseif (isset($_SESSION['logged_on_user']) && isset($_GET['action']) && isset($_GET['pic_id']) && $_GET['action'] === "img_status")
 		addLike();
+	elseif (isset($_SESSION['logged_on_user']) && isset($_GET['action']) && isset($_GET['img_id']) && $_GET['action'] === "postCom" && isset($_POST['com']))
+		sendCom();
 	else
 		getPics();
