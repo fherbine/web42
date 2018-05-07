@@ -37,6 +37,10 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 							<!-- test !!!!!!!!!!!!!!!!!!! -->
 							<?php echo $com['content']; ?>
 						<?php endforeach; ?>
+						<form method="post" action="#">
+							<textarea name="com"></textarea>
+							<input type="submit" name="submit" value="OK" />
+						</form>
 					</div>
 				</div>
 			<?php endforeach; ?>
