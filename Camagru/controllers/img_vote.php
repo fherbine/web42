@@ -1,10 +1,10 @@
 <?php
 require_once('models/LikesManager.php');
 
-function getLike()
+function getLike($pic_id)
 {
 	$result = new LikesManager();
-	$res = $result->checkUsrLike($_SESSION['uid'], $_GET['pic_id']);
+	$res = $result->checkUsrLike($_SESSION['uid'], $pic_id);
 	return ($res);
 }
 

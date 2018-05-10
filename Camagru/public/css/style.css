@@ -46,3 +46,20 @@ header
 {
 	color: lightgrey;
 }
+
+.heart
+{
+	text-decoration: none;
+	color: black;
+}
+
+.heart:hover
+{
+	color:red;
+}
+
+.heart_selected
+{
+	text-decoration: none;
+	color: red;
+}

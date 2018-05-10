@@ -37,7 +37,7 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 						<?php endforeach; ?>
 						<div class="icons">
 							<?php if (isset($_SESSION['logged_on_user'])): ?>
-								<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?>>♥</a><?= $uimg['rate']?></p>
+								<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?> class=<?php echo (!getLike($uimg['id'])) ? "heart" : "heart_selected"; ?>>♥</a>  <?= $uimg['rate']?></p>
 							<?php endif; ?>
 							<form method="post" action=<?= '"index.php?action=postCom&img_id=' . $uimg['id'] . '"' ?>>
 								<textarea name="com"></textarea>
