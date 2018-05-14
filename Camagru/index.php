@@ -40,4 +40,7 @@
 	elseif (isset($_SESSION['logged_on_user']) && isset($_GET['action']) && isset($_GET['img_id']) && $_GET['action'] === "postCom" && isset($_POST['com']))
 		sendCom();
 	else
-		getPics();
+	{
+		$req_res = getPics();
+		require_once('views/indexView.php');
+	}

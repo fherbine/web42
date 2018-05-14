@@ -37,6 +37,5 @@ function getPics()
 		// var_dump($master);
 	}
 	// $req_res[] = array_map("base64_encode", $req_res[]);
-
-	require_once('views/indexView.php');
+	return ($req_res);
 }
