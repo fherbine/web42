@@ -41,7 +41,7 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 							<?php endif; ?>
 							<form method="post" action=<?= '"index.php?action=postCom&img_id=' . $uimg['id'] . '"' ?>>
 								<textarea name="com"></textarea>
-								<input type="submit" name="submit" value="OK" />
+								<input type="submit" name="submit" value="‣" />
 							</form>
 						</div>
 					</div>
