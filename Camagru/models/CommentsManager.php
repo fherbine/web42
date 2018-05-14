@@ -13,7 +13,7 @@ class CommentsManager
 			if ($all)
 				$req = $db->prepare('SELECT id, DATE_FORMAT(date_com, \'%Y/%m/%d at %Hh%i\') AS d_com, auth, content, rate FROM img_com WHERE img_id = ?');
 			else
-				$req = $db->prepare('SELECT id, DATE_FORMAT(date_com, \'%m/%d at %Hh\') AS d_com, auth, content, rate FROM img_com WHERE img_id = ? ORDER BY id DESC');
+				$req = $db->prepare('SELECT id, DATE_FORMAT(date_com, \'%m/%d at %Hh\') AS d_com, auth, content, rate FROM img_com WHERE img_id = ? ORDER BY id DESC LIMIT 5');
 			$req->execute(array($img_id));
 			$com_tab = $req->fetchAll();
 			// var_dump($com_tab);
