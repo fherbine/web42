@@ -20,8 +20,9 @@ $title = "photobooth42 - profil";
 
 <?php ob_start(); ?>
 	<section>
-		<div>
+		<div class="usrBio">
 			<h2><?= $_SESSION['login'] ?></h2>
+			<p><b>User-Bio: </b><?= $_SESSION['sumup'] ?></p>
 		</div>
 		<article>
 			<?php foreach($req_res as $uimg): ?>

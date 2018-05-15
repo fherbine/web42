@@ -60,6 +60,22 @@ class PostPicsManager
 
 	}
 
+	private function getUsrRates($user)
+	{
+		$db = $this->dbConnect();
+
+		try
+		{
+			$req = $db->prepare('SELECT SUM(rate) AS u_rate FROM imgs WHERE auth = ?');
+			$req->execute(array($user));
+			return $req->fetch();
+		}
+		catch (Exception $e)
+		{
+			echo "An error occured!" . $e;
+		}
+	}
+
 
 	private function dbConnect()
 	{

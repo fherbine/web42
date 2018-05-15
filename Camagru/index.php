@@ -37,7 +37,7 @@
 		getUsrPics();
 	elseif (isset($_SESSION['logged_on_user']) && isset($_GET['action']) && isset($_GET['pic_id']) && $_GET['action'] === "img_status")
 		addLike();
-	elseif (isset($_SESSION['logged_on_user']) && isset($_GET['action']) && isset($_GET['img_id']) && $_GET['action'] === "postCom" && isset($_POST['com']))
+	elseif (isset($_SESSION['logged_on_user']) && isset($_GET['action']) && isset($_GET['img_id']) && $_GET['action'] === "postCom" && isset($_POST['com']) && $_POST['com'] !== "")
 		sendCom();
 	else
 	{

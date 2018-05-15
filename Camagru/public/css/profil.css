@@ -27,3 +27,12 @@ img
 	display: flex;
 	font-size: 1.8vw;
 }
+
+.usrBio
+{
+	margin: auto;
+	margin-top: 5px;
+	padding: 15px;
+	border: 1px solid black;
+	width:80%;
+}
