@@ -7,6 +7,8 @@
 
 	if (isset($_GET['page']) && $_GET['page'] === "log")
 		require_once('views/log.php');
+	else if (isset($_GET['page']) && $_GET['page'] === "register")
+		require_once('views/register.php');
 	elseif (isset($_GET['action']) && $_GET['action'] === "signin" && !$_SESSION['logged_on_user'])
 		signin();
 	elseif (isset($_GET['action']) && $_GET['action'] === "signup" && !$_SESSION['logged_on_user'])
