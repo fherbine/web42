@@ -21,11 +21,17 @@ $title = "photobooth42 - profil";
 <?php ob_start(); ?>
 	<section>
 		<div class="usrBio">
-			<h2><?= $_SESSION['login'] ?></h2>
-			<p><b>User-Bio: </b><?= $_SESSION['sumup'] ?></p>
+			<div class="rbio">
+				<h2><?= $_SESSION['login'] ?></h2>
+				<p><b>User-Bio: </b><?= $_SESSION['sumup'] ?></p>
+			</div>
+			<div class="urates">
+				<p style="color:red;font-size:3.9vw;text-shadow: -1px -1px lightgrey;">♥</p>
+				<p class="urates_int"><?= $req_res['urates']['u_rate'] ?></p>
+			</div>
 		</div>
 		<article>
-			<?php foreach($req_res as $uimg): ?>
+			<?php foreach($req_res['content'] as $uimg): ?>
 				<div class="img_box">
 					<img alt=<?= '"' . $_SESSION['login'] . "-img-" . $uimg['up_date'] . '"' ?> src=<?= '"data:image/png;charset:utf-8;base64,' . base64_encode($uimg['content']) . '"'?> />
 					<p><?=$uimg['up_date']?></p>
