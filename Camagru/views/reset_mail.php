@@ -3,7 +3,7 @@ $title = "photobooth42 - Reset your password";
 ?>
 
 <?php ob_start(); ?>
-	<!-- <link rel="stylesheet" type="text/css" href="public/css/index.css"/> -->
+	<link rel="stylesheet" type="text/css" href="public/css/send_rst_mail.css"/>
 <?php $ext_head = ob_get_clean(); ?>
 
 <!-- right header content -->
@@ -15,11 +15,19 @@ $title = "photobooth42 - Reset your password";
 <!-- Main view -->
 
 <?php ob_start(); ?>
-	<h2>Give us your email to reset your password: </h2>
-	<form method="POST" action="index.php?action=send_rst_mail">
-		<input type="email" name="email" placeholder="Your email" required/>
-		<input type="submit" name="submit" />
-	</form>
+	<div class="main_box">
+		<a href="index.php" class="index_a">
+			<i class="far fa-paper-plane"></i>
+			<h1>PhotoBooth 42</h1>
+		</a>
+		<div class="send_box">
+			<p>Give us your email to reset your password: </p>
+			<form method="POST" action="index.php?action=send_rst_mail">
+				<input type="email" name="email" placeholder="Your email" required/><br />
+				<input type="submit" name="submit" value="send reset email" />
+			</form>
+		</div>
+	</div>
 <?php $content = ob_get_clean(); ?>
 
 

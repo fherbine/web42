@@ -37,7 +37,7 @@ $title = "photobooth42 - profil";
 					<p><?=$uimg['up_date']?></p>
 					<div class="icons">
 						<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?> class=<?php echo (!getLike($uimg['id'])) ? "heart" : "heart_selected"; ?>>♥</a>  <?= $uimg['rate']?></p>
-						<p><a href="#">💬</a><?= $uimg['ncoms'] ?></p>
+						<p><a href="#"><i class="far fa-comment"></i></a><?= $uimg['ncoms'] ?></p>
 					</div>
 				</div>
 			<?php endforeach; ?>

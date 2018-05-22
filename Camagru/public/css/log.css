@@ -1,0 +1,90 @@
+header, footer
+{
+	display:none;
+}
+
+body
+{
+	margin:auto;
+	background-color: #f9f9f9;
+	color:#313233;
+}
+
+.main_box
+{
+	width: 25%;
+	min-width: 300px;
+	padding: 5px;
+	margin: auto;
+	margin-top:25px;
+	text-align: center;
+	display:flex;
+	flex-direction: column;
+}
+
+i
+{
+	font-size: 75px;
+}
+
+.sign_box, .reg_box
+{
+	margin: 5px;
+	border:1px solid lightgrey;
+	border-radius:5px;
+}
+
+.sign_box
+{
+	background-color: white;
+	padding:10px;
+	text-align: left;
+}
+
+.over_pass
+{
+	display: flex;
+	justify-content: space-between;
+}
+
+input
+{
+	margin-top: 5px;
+	height:30px;
+	border:1px solid lightgrey;
+	border-radius: 4px;
+	font-size: 15px;
+}
+
+input[type="submit"]
+{
+	background-image: linear-gradient(#687fe8, #1f41dd);
+	color: white;
+	font-size: 15px;
+	height: 40px;
+	border:1px solid #475699;
+}
+
+input[type="submit"]:hover
+{
+	background-image: linear-gradient(#687fe8, #1131c1);
+	border:1px solid #3a4782;
+}
+
+.main_box form
+{
+	display: flex;
+	flex-direction: column;
+}
+
+a
+{
+	text-decoration: none;
+	color:#1a34a5;
+}
+
+.index_a
+{
+	text-decoration: none;
+	color:#313233;
+}
