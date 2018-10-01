@@ -20,6 +20,7 @@ $title = "photobooth42 - Index";
 			<h1>PhotoBooth 42</h1>
 		</a>
 		<div class="sign_box">
+			<h2>Sign in</h2>
 			<form action="index.php?action=signin" method="POST">
 				<label for="email">email address</label>
 				<input type="email" name="email" id="email" required /><br />
@@ -28,7 +29,7 @@ $title = "photobooth42 - Index";
 				<input type="submit" name="submit" value="Sign in" />
 			</form>
 		</div>
-		<div class="reg_box">
+		<div class="link_box">
 			<p>New on Photobooth ? <a href="index.php?page=register">Create an account!</a></p>
 		</div>
 	</div>

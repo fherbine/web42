@@ -11,7 +11,7 @@
 		require_once('views/register.php');
 	elseif (isset($_GET['action']) && $_GET['action'] === "signin" && !$_SESSION['logged_on_user'])
 		signin();
-	elseif (isset($_GET['action']) && $_GET['action'] === "signup" && !$_SESSION['logged_on_user'])
+	elseif (isset($_GET['action']) && $_GET['action'] === "signup" && (!isset($_SESSION['logged_on_user']) || !$_SESSION['logged_on_user']))
 		signup();
 	elseif (isset($_GET['page']) && $_GET['page'] === "activate" && isset($_GET['key']) && isset($_GET['login']))
 		activation();

@@ -3,7 +3,7 @@ $title = "photobooth42 - Index";
 ?>
 
 <?php ob_start(); ?>
-	<!-- <link rel="stylesheet" type="text/css" href="public/css/log.css"/> -->
+	<link rel="stylesheet" type="text/css" href="public/css/log.css"/>
 <?php $ext_head = ob_get_clean(); ?>
 
 <!-- right header content -->
@@ -14,15 +14,28 @@ $title = "photobooth42 - Index";
 <!-- Main view -->
 
 <?php ob_start(); ?>
-	<div>
-		<h2>Sign up</h2>
-		<form action="index.php?action=signup" method="POST">
-			<input type="email" name="email" placeholder="user@example.com" required />
-			<input type="password" name="passwd" placeholder="password" required />
-			<input type="password" name="passwd_confirm" placeholder="Confirm your password" required />
-			<input type="text" name="pseudo" placeholder="pseudo" required />
-			<input type="submit" name="submit" />
-		</form>
+	<div class="main_box">
+		<a href="index.php" class="index_a">
+			<i class="far fa-paper-plane"></i>
+			<h1>PhotoBooth 42</h1>
+		</a>
+		<div class="sign_box">
+			<h2>Sign up</h2>
+			<form action="index.php?action=signup" method="POST">
+				<label for="email">email adress</label>
+				<input type="email" name="email" id="email" required /><br />
+				<label for="password">password</label>
+				<input type="password" name="passwd" id="password" required /><br />
+				<label for="password_c">confirm your password</label>
+				<input type="password" name="passwd_confirm" id="password_c" required /><br />
+				<label for="pseudo">pseudo</label>
+				<input type="text" name="pseudo" id="pseudo" required /><br />
+				<input type="submit" name="submit" />
+			</form>
+		</div>
+		<div class="link_box">
+			<p>Already registered ? <a href="index.php?page=log">Sign in !</a></p>
+		</div>
 	</div>
 <?php $content = ob_get_clean(); ?>
 

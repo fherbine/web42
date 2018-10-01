@@ -48,12 +48,18 @@ header
 
 .rheader
 {
-	width:20%;
+	width:25%;
 	margin: auto;
 	margin-right: 5px;
 	display:flex;
 	flex-direction:raw;
 	justify-content: space-around;
+	flex-wrap: nowrap;
+}
+
+.rheader a
+{
+	width: 100%;
 }
 
 .rheader a:hover
