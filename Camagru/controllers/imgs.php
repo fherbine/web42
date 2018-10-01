@@ -2,16 +2,38 @@
 require_once('models/CommentsManager.php');
 require_once('models/PostPicsManager.php');
 
+
 function sendNewPic()
 {
 	$result = new PostPicsManager();
 	$auth = $_SESSION['login'];
 
+	//if (isset($_POST['fpath']))
+	//{
+	//	$image = imagecreatefrompng(filename)
+	//}
+
 	if (isset($_POST['camContent']))
-	{		$result->sendImg(base64_decode($_POST['camContent']), $auth, $_SESSION['uid']);
+	{
+		$ipath = $result->sendImg(base64_decode($_POST['camContent']), $auth, $_SESSION['uid']);
 	}
+
+	if (isset($_POST['fpath']))
+	{
+		$image = imagecreatefrompng($ipath);
+		$filter = imagecreatefrompng($_POST['fpath']);
+		echo $_POST['fpath'];
+		echo $ipath;
+		echo $image;
+		imagecopymerge($image, $filter, 0, 0, 0, 0, 100, 100, 60);
+		$file = fopen($ipath, 'w+');
+		imagepng($image, $file);
+		fclose($file);
+	}
+
 	// else
 		// $result->sendImg($_POST['content'], $auth);
+	return "toto";
 }
 
 function getUsrPics()

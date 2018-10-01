@@ -23,7 +23,7 @@ function activeXHR()
 	return xhr;
 }
 
-function postImg(content)
+function postImg(content, fpath)
 {
 	var xhr = activeXHR();
 
@@ -33,7 +33,7 @@ function postImg(content)
 	{
 		xhr.open("POST", "index.php?action=postPic", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xhr.send("camContent=" + content);
+		console.log(xhr.send("camContent=" + content + "&fpath=" + fpath));
 	}
 }
 
@@ -44,6 +44,11 @@ const constraints = {
 const button = document.querySelector('#screenshot-button');
 const img = document.querySelector('#screenshot-img');
 const video = document.querySelector('#screenshot-video');
+const vidFilter = document.querySelector("#filterV");
+vidFilter.src = 'public/imgs/42.png'; // default filter
+fpath = 'public/imgs/42.png';
+const f42 = document.querySelector('#filter_42');
+const fsun = document.querySelector('#filter_sun');
 
 const canvas = document.createElement('canvas');
 
@@ -68,13 +73,29 @@ button.addEventListener("click", function()
 	}
 );
 
+f42.addEventListener("click", function()
+	{
+		fpath = 'public/imgs/42.png';
+		vidFilter.src = fpath;
+		//document.getElementById("cam").innerHTML += '<img src="public/imgs/42.png" alt="logo42"/>';
+	}
+);
+
+fsun.addEventListener("click", function()
+	{
+		fpath = 'public/imgs/sun.png';
+		vidFilter.src = fpath;
+		//document.getElementById("cam").innerHTML += '<img src="public/imgs/42.png" alt="logo42"/>';
+	}
+);
+
 function keepit(content)
 {
 	var keep = document.getElementById('keep-it');
 
 	keep.addEventListener("click", function()
 		{
-			postImg(content);
+			postImg(content, fpath);
 		}
 	);
 }

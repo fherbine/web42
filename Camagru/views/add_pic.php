@@ -17,12 +17,25 @@ $title = "photobooth42 - Take a picture";
 
 <?php ob_start(); ?>
 
-<video id="screenshot-video" autoplay></video>
-<img src="" id="screenshot-img">
+<div id="cam">
+	<div class="cam_elem">
+		<img src="" id="filterV" />
+		<video id="screenshot-video" autoplay></video>
+	</div>
+	<div class="cam_elem">
+		<img src="" id="screenshot-img" class="cam_elem">
+	</div>
+</div>
 <canvas style="display:none;"></canvas>
-<button id="screenshot-button">take a picture</button>
-
 <div id="buttons">
+	<button id="screenshot-button">take a picture</button>
+	<fieldset>
+		<legend>filtres</legend>
+		<div id="filters">
+			<button id="filter_42"><img src="./public/imgs/42.png" alt="logo42">logo 42</button>
+			<button id="filter_sun"><img src="./public/imgs/sun.png" alt="sun">Sun glasses</button>
+		</div>
+	</fieldset>
 	<form method="post" action="index.php?action=add_own_pic">
 		<input type="file" name="image" accept="image/*"/> 
 	</form>

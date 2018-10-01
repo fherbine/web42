@@ -3,6 +3,17 @@
 class PostPicsManager
 {
 
+	public function createUsrImgPage($uid, $content, $iid)
+	{
+		if (!is_dir('public/user/'))
+			mkdir('public/user/');
+		$fpath = 'public/user/' . $uid . '-' . $iid . '.png';
+		$file = fopen($fpath, 'w+');
+		fwrite($file, $content);
+		fclose($file);
+		return $fpath;
+	}
+
 	public function sendImg($content, $auth, $uid)
 	{
 		$db = $this->dbConnect();
@@ -16,6 +27,9 @@ class PostPicsManager
 				'rate' => 0,
 				'ncoms' => 0
 			));
+			$req2 = $db->query('SELECT MAX(id) AS iid FROM imgs');
+			$iid = $req2->fetch()['iid'];
+			return $this->createUsrImgPage($uid, $content, $iid);
 		}
 		catch (Exception $e)
 		{
