@@ -25,10 +25,13 @@ function sendNewPic()
 		echo $_POST['fpath'];
 		echo $ipath;
 		echo $image;
-		imagecopymerge($image, $filter, 0, 0, 0, 0, 100, 100, 60);
+		$deb = imagecopy($image, $filter, 0, 0, 0, 0, imagesx($filter), imagesy($filter));
+		echo "\n" . $deb;
 		$file = fopen($ipath, 'w+');
 		imagepng($image, $file);
-		fclose($file);
+		//fclose($file);
+		imagedestroy($image);
+		imagedestroy($filter);
 	}
 
 	// else
