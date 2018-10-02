@@ -83,3 +83,8 @@ header
 	text-decoration: none;
 	color: red;
 }
+
+input[type="submit"], input[type="reset"], input[type="file"], button
+{
+	cursor: pointer;
+}

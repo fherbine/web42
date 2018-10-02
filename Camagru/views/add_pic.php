@@ -27,19 +27,20 @@ $title = "photobooth42 - Take a picture";
 	</div>
 </div>
 <canvas style="display:none;"></canvas>
+
 <div id="buttons">
-	<button id="screenshot-button">take a picture</button>
-	<fieldset>
-		<legend>filtres</legend>
-		<div id="filters">
-			<button id="filter_42"><img src="./public/imgs/42neg.png" alt="logo42">logo 42</button>
-			<button id="filter_sun"><img src="./public/imgs/sun.png" alt="sun">Sun glasses</button>
-		</div>
-	</fieldset>
-	<form method="post" action="index.php?action=add_own_pic">
-		<input type="file" name="image" accept="image/png" id="uImg"/> 
-	</form>
+	<button id="screenshot-button" class="addPicButs">take a picture</button>
+	<label for="uImg" class="addPicButs">Upload your own</label>
 </div>
+
+<input type="file" name="image" accept="image/png" id="uImg"/>
+<fieldset>
+	<legend>filtres</legend>
+	<div id="filters">
+		<button id="filter_42" autofocus><img src="./public/imgs/42neg.png" alt="logo42">logo 42</button>
+		<button id="filter_sun"><img src="./public/imgs/sun.png" alt="sun">Sun glasses</button>
+	</div>
+</fieldset>
 
 <script type="text/javascript" src="public/scripts/usrCam.js"></script>
 <!-- <script type="text/javascript" src="public/scripts/getImg.js"></script> -->

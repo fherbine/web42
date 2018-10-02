@@ -62,7 +62,7 @@ function createKeepButton()
 {
 	if (!document.getElementById('keep-it'))
 		{
-			select = '<button id="keep-it" >KEEP THIS</a>';
+			select = '<button id="keep-it" class="addPicButs">Post</a>';
 			document.getElementById('buttons').innerHTML += select;
 			keep = document.getElementById('keep-it');
 		}

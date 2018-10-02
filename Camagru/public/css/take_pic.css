@@ -46,7 +46,7 @@
 
 #filters button:hover
 {
-	border: 1px solid red;
+	border: 1px solid white;
 }
 
 #filters img
@@ -54,7 +54,50 @@
 	width: 100%;
 }
 
-#filter_42
+#filters button
 {
 	border: none;
 }
+
+#buttons
+{
+	/*border: 0px solid red;*/
+	width: 60%;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+	/*flex-direction: column;*/
+	justify-content: space-around;
+}
+
+label
+{
+	cursor: pointer;
+	text-align: center;
+}
+
+.addPicButs
+{
+	padding:6px 0 6px 0;
+	margin-bottom: 4px;
+	width: 25%;
+	font:bold 13px Arial;
+	background: white;
+	color:#555;
+	border-radius:2px;
+	min-width:120px;
+	border:1px solid #ccc;
+}
+
+.addPicButs:hover
+{
+	/*background-image: linear-gradient(#687fe8, #1131c1);*/
+	background-color: lightgrey;
+	border:1px solid grey;
+}
+
+#uImg
+{
+	display: none;
+}
+
