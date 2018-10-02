@@ -22,11 +22,8 @@ function sendNewPic()
 	{
 		$image = imagecreatefrompng($ipath);
 		$filter = imagecreatefrompng($_POST['fpath']);
-		echo $_POST['fpath'];
-		echo $ipath;
-		echo $image;
-		$deb = imagecopy($image, $filter, 0, 0, 0, 0, imagesx($filter), imagesy($filter));
-		echo "\n" . $deb;
+		$image = imagescale($image, 400);
+		imagecopy($image, $filter, 0, 0, 0, 0, imagesx($filter), imagesy($filter));
 		$file = fopen($ipath, 'w+');
 		imagepng($image, $file);
 		//fclose($file);

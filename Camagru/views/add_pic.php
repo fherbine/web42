@@ -37,7 +37,7 @@ $title = "photobooth42 - Take a picture";
 		</div>
 	</fieldset>
 	<form method="post" action="index.php?action=add_own_pic">
-		<input type="file" name="image" accept="image/*"/> 
+		<input type="file" name="image" accept="image/png" id="uImg"/> 
 	</form>
 </div>
 

@@ -49,12 +49,53 @@ vidFilter.src = 'public/imgs/42neg.png'; // default filter
 fpath = 'public/imgs/42neg.png';
 const f42 = document.querySelector('#filter_42');
 const fsun = document.querySelector('#filter_sun');
+const uploaded = document.querySelector('#uImg');
 
 const canvas = document.createElement('canvas');
 
 var select, getImg;
 const width = 400;
 var height = 0;
+var keep = null;
+
+function createKeepButton()
+{
+	if (!document.getElementById('keep-it'))
+		{
+			select = '<button id="keep-it" >KEEP THIS</a>';
+			document.getElementById('buttons').innerHTML += select;
+			keep = document.getElementById('keep-it');
+		}
+	keep.addEventListener("click", function()
+	{
+		var content = img.src.split(',')[1];
+		console.log("debuggg");
+		postImg(content, fpath);
+	}
+	);
+}
+
+function uploadVisual(file)
+{
+	var upl = new FileReader();
+
+	upl.addEventListener('load', function()
+	{
+		img.src = this.result;
+	});
+
+	upl.readAsDataURL(file);
+	createKeepButton();
+}
+
+uploaded.addEventListener('change', function()
+	{
+		if (this.files[0].type == 'image/png')
+		{
+			uploadVisual(this.files[0]);
+
+		}
+	});
 
 button.addEventListener("click", function()
 	{
@@ -64,12 +105,7 @@ button.addEventListener("click", function()
 		ctx = canvas.getContext('2d');
 		ctx.drawImage(video, 0, 0, width, height);
 		img.src = canvas.toDataURL('image/png');
-		if (!document.getElementById('keep-it'))
-		{
-			select = '<button id="keep-it" >KEEP THIS</a>';
-			document.getElementById('buttons').innerHTML += select;
-		}
-		keepit(img.src.split(',')[1]);
+		createKeepButton();
 	}
 );
 
@@ -89,16 +125,9 @@ fsun.addEventListener("click", function()
 	}
 );
 
-function keepit(content)
-{
-	var keep = document.getElementById('keep-it');
-
-	keep.addEventListener("click", function()
-		{
-			postImg(content, fpath);
-		}
-	);
-}
+// function keepit(content)
+// {
+// }
 
 
 function handleSuccess(stream) {

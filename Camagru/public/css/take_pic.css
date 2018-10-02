@@ -24,10 +24,12 @@
 #screenshot-video
 {
 	width: 60%;
+	max-width: 400px;
 }
 #screenshot-img
 {
 	width: 60%;
+	max-width: 400px;
 }
 
 #filters
