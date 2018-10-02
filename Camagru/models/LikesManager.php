@@ -36,8 +36,8 @@ class LikesManager
 			));
 			try
 			{
-				$req2 = $db->prepare('UPDATE imgs SET rate = (rate + 1) WHERE uid = ? AND id = ?');
-				$req2->execute(array($uid, $img_id));
+				$req2 = $db->prepare('UPDATE imgs SET rate = (rate + 1) WHERE id = ?');
+				$req2->execute(array($img_id));
 				header("Location: index.php");
 			}
 			catch (Exception $e)

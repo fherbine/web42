@@ -14,6 +14,7 @@ class LogManager
 			$_SESSION['login'] = $user_info['pseudo']; 
 			$_SESSION['email'] = $user_info['email']; 
 			$_SESSION['sumup'] = $user_info['sumup']; 
+			$_SESSION['ulocate'] = $user_info['location'];
 			$_SESSION['logged_on_user'] = true;
 			$_SESSION['logged_on_admin'] = ($user_info['admin'] = '0') ? false : true; 
 		}
@@ -30,13 +31,14 @@ class LogManager
 		{
 			$confirm_key = hash('md5', rand());
 			try {
-			$request = $db->prepare('INSERT INTO passwd(email, passwd, pseudo, sign_date, admin, sumup, confirm, confirm_key)
+			$request = $db->prepare('INSERT INTO passwd(email, passwd, pseudo, sign_date, admin, sumup, location, confirm, confirm_key)
 				VALUES(:email, :password, :pseudo, NOW(), :admin, :sumup, :confirm, :confirm_key)');
 			$request->execute(array('email' => $email,
 								'password' => hash('whirlpool', $password),
 								'pseudo' => $pseudo,
 								'admin' => $admin,
 								'sumup' => 'Hey I\'m new on Photobooth 42 !',
+								'locate' => '',
 								'confirm' => 0,
 								'confirm_key' => $confirm_key
 							)); ///////////////////////// -------------------------------- rand -> conf key

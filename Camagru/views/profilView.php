@@ -23,7 +23,10 @@ $title = "photobooth42 - profil";
 		<div class="usrBio">
 			<div class="rbio">
 				<h2><?= $_SESSION['login'] ?></h2>
-				<p><b>User-Bio: </b><?= $_SESSION['sumup'] ?></p>
+				<?php if(isset($_SESSION['ulocate'])) : ?>
+					<p><i class="fas fa-map-marker-alt"></i> <?php echo $_SESSION['ulocate'];?></p>
+				<?php endif; ?>
+				<p><b>Bio: </b><?= $_SESSION['sumup'] ?></p>
 			</div>
 			<div class="urates">
 				<p style="color:red;font-size:3.9vw;text-shadow: -1px -1px lightgrey;">♥</p>

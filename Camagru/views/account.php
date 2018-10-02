@@ -3,7 +3,7 @@ $title = "photobooth42 - Account";
 ?>
 
 <?php ob_start(); ?>
-	<!-- <link rel="stylesheet" type="text/css" href="public/css/index.css"/> -->
+	<link rel="stylesheet" type="text/css" href="public/css/account.css"/>
 <?php $ext_head = ob_get_clean(); ?>
 
 <!-- right header content -->
@@ -22,32 +22,42 @@ if ($_SESSION['logged_on_user'] === true):?>
 <!-- Main view -->
 
 <?php ob_start(); ?>
-	<h2>Public settings</h2>
-	<!-- profil pic ? -->
-	<form method="POST" action="index.php?action=update_account">
-		<label for="sumup">Edit your bio:</label>
-		<textarea id="sumup" name="sumup" ><?= $_SESSION['sumup'] ?></textarea>
-		<input type="submit" name="submit" />
-	</form>
-	<hr/>
-	<h2>Account settings</h2>
-	<div>
-		<h3>Change your password:</h3>
-		<form method="POST" action="index.php?action=newpw">
-			<input type="password" name="old_passwd" placeholder="current password" required/>
-			<input type="password" name="new_pass" placeholder="New password" required/>
-			<input type="password" name="new_passc" placeholder="confirm new password" required/>
-			<input type="submit" name="submit" />
-		</form>
-	</div>
-	<div>
-		<h3>Delete your account:</h3>
-		<p><span style="font-weight: bold;">NOTE:</span> This action is irreversible, please make sure that you want to delete your account and all your data !</p>
-		<form method="POST" action="index.php?action=rm_acc">
-			<input type="password" name="passwd" placeholder="password" required/>
-			<input type="submit" name="submit" value="DELETE" />
-		</form>
-	</div>
+	<section id="container">
+		<div>
+			<h2>Public settings</h2>
+			<hr /><br />
+			<!-- profil pic ? -->
+			<div>
+				<form method="POST" action="index.php?action=update_account">
+					<label for="sumup">Edit your bio:</label><br />
+					<textarea id="sumup" name="sumup" ><?= $_SESSION['sumup'] ?></textarea><br />
+					<input type="submit" name="submit" />
+				</form>
+			</div>
+		</div>
+		<div>
+			<h2>Account settings</h2>
+			<hr /><br />
+			<div>
+				<h3>Change your password:</h3>
+				<form method="POST" action="index.php?action=newpw">
+					<input type="password" name="old_passwd" placeholder="current password" required/><br />
+					<input type="password" name="new_pass" placeholder="New password" required/><br />
+					<input type="password" name="new_passc" placeholder="confirm new password" required/><br />
+					<input type="submit" name="submit" />
+				</form>
+			</div>
+			<div id="delete_area">
+				<h3>Delete your account:</h3>
+				<p><span style="font-weight: bold;">NOTE:</span> This action is irreversible, please make sure that you want to delete your account and all your data !</p>
+				<form method="POST" action="index.php?action=rm_acc">
+					<input type="password" name="passwd" placeholder="password" required/><br />
+					<input type="submit" name="submit" value="Delete" />
+				</form>
+			</div>
+		</div>
+	</section>
+	<br />
 <?php $content = ob_get_clean(); ?>
 
 
