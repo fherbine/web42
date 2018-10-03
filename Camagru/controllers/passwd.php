@@ -4,10 +4,10 @@ require_once('models/AccountManager.php');
 
 function signin()
 {
-	if (isset($_POST) && isset($_POST['email']) && isset($_POST['passwd']))
+	if (isset($_POST) && isset($_POST['username']) && isset($_POST['passwd']))
 	{
 		$result = new LogManager();
-		$res = $result->logUsr($_POST['email'], $_POST['passwd']);
+		$res = $result->logUsr($_POST['username'], $_POST['passwd']);
 		header('Location: index.php');
 	}
 	else

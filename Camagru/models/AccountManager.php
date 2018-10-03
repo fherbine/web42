@@ -23,8 +23,8 @@ class AccountManager
 		{
 			$request = $db->prepare('UPDATE passwd SET passwd = :new WHERE pseudo = :log OR confirm_key = :gave_key');
 			$request->execute(array(
-				'new' => hash('whirlpool', $newpw),
-				'log' => $login,
+				'new' => hash('whirlpool', htmlspecialchars($newpw)),
+				'log' => htmlspecialchars($login),
 				'gave_key' => $key
 			));
 			return true;
@@ -98,7 +98,7 @@ class AccountManager
 		{
 			$request = $db->prepare('UPDATE passwd SET sumup = :bio WHERE pseudo = :log');
 			$request->execute(array(
-				'bio' => $newBio,
+				'bio' => htmlspecialchars($newBio),
 				'log' => $login
 			));
 			$_SESSION['sumup'] = ($request->rowCount()) ? $newBio : $_SESSION['sumup'];

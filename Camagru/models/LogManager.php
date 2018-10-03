@@ -3,11 +3,11 @@
 
 class LogManager
 {
-	public function logUsr($email, $password)
+	public function logUsr($usn, $password)
 	{
 		$db = $this->dbConnect();
-		$request = $db->prepare('SELECT * FROM passwd WHERE email = :email AND passwd = :password AND confirm = 1');
-		$request->execute(array('email' => $email, 'password' => hash('whirlpool', $password)));
+		$request = $db->prepare('SELECT * FROM passwd WHERE pseudo = :usn AND passwd = :password AND confirm = 1');
+		$request->execute(array('usn' => $usn, 'password' => hash('whirlpool', $password)));
 		if ($user_info = $request->fetch())
 		{
 			$_SESSION['uid'] = $user_info['id']; 
@@ -33,9 +33,9 @@ class LogManager
 			try {
 			$request = $db->prepare('INSERT INTO passwd(email, passwd, pseudo, sign_date, admin, sumup, location, confirm, confirm_key)
 				VALUES(:email, :password, :pseudo, NOW(), :admin, :sumup, :confirm, :confirm_key)');
-			$request->execute(array('email' => $email,
-								'password' => hash('whirlpool', $password),
-								'pseudo' => $pseudo,
+			$request->execute(array('email' => htmlspecialchars($email),
+								'password' => hash('whirlpool', htmlspecialchars($password)),
+								'pseudo' => htmlspecialchars($pseudo),
 								'admin' => $admin,
 								'sumup' => 'Hey I\'m new on Photobooth 42 !',
 								'locate' => '',
@@ -45,7 +45,7 @@ class LogManager
 		}
 			catch(Exception $e) {echo "An error occured" . $e->getMessage();}
 			$url = 'http://localhost:8080/camagru/index.php?page=activate&login=' . urlencode($pseudo) . '&key=' . urlencode($confirm_key); ///////////////////////////// ----------------------------------------
-			$content = 'Thanks for your subscription ' . $pseudo . ' and welcome on board.
+			$content = 'Thanks for your subscription ' . htmlspecialchars($pseudo) . ' and welcome on board.
 			 Please click on the following link to activate your account: ' . $url;
 			$content = wordwrap($content, 70, "\r\n");
 			$this->sendMail('felix.herbinet@yahoo.com', $email, 'Activation of your account', $content);

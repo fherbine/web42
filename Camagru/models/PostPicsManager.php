@@ -21,7 +21,7 @@ class PostPicsManager
 		{
 			$req = $db->prepare('INSERT INTO imgs(auth, uid, upload_date, rate, ncoms) VALUES(:auth, :uid, NOW(), :rate, :ncoms)');
 			$req->execute(array(
-				'auth' => $auth,
+				'auth' => htmlspecialchars($auth),
 				'uid' => $uid,
 				'rate' => 0,
 				'ncoms' => 0

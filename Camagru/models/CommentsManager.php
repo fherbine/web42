@@ -32,9 +32,9 @@ class CommentsManager
 		{
 			$req = $db->prepare('INSERT INTO img_com(img_id, date_com, auth, content, rate) VALUES(:i_id, NOW(), :auth, :content, 0)');
 			$req->execute(array(
-				'i_id' => $img_id,
-				'auth' => $auth,
-				'content' => $content
+				'i_id' => htmlspecialchars($img_id),
+				'auth' => htmlspecialchars($auth),
+				'content' => htmlspecialchars($content)
 			));
 			header("Location: index.php");
 		}

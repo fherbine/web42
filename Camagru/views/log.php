@@ -22,8 +22,8 @@ $title = "photobooth42 - Index";
 		<div class="sign_box">
 			<h2>Sign in</h2>
 			<form action="index.php?action=signin" method="POST">
-				<label for="email">email address</label>
-				<input type="email" name="email" id="email" required /><br />
+				<label for="username">username</label>
+				<input type="text" name="username" id="username" required /><br />
 				<div class="over_pass"><label for="passwd">password</label><a href="index.php?page=reset_mail">You forgot your password ?</a></div>
 				<input type="password" name="passwd" id="passwd" required/><br />
 				<input type="submit" name="submit" value="Sign in" />
