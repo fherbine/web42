@@ -71,3 +71,17 @@ function updateAccount()
 	$result = new AccountManager();
 	$result->updateBio($_POST['sumup'], $_SESSION['login']);
 }
+
+function updateEmail()
+{
+	$result = new AccountManager();
+	if (isset($_POST['email']))
+		$result->updateEmail($_POST['email'], $_SESSION['login']);
+}
+
+function updateUsn()
+{
+	$result = new AccountManager();
+	if (isset($_POST['n_usn']))
+		$result->updateUsn($_POST['n_usn'], $_SESSION['login']);
+}

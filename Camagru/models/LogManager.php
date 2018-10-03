@@ -32,7 +32,7 @@ class LogManager
 			$confirm_key = hash('md5', rand());
 			try {
 			$request = $db->prepare('INSERT INTO passwd(email, passwd, pseudo, sign_date, admin, sumup, location, confirm, confirm_key)
-				VALUES(:email, :password, :pseudo, NOW(), :admin, :sumup, :confirm, :confirm_key)');
+				VALUES(:email, :password, :pseudo, NOW(), :admin, :sumup, :locate, :confirm, :confirm_key)');
 			$request->execute(array('email' => htmlspecialchars($email),
 								'password' => hash('whirlpool', htmlspecialchars($password)),
 								'pseudo' => htmlspecialchars($pseudo),

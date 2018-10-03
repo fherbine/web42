@@ -28,9 +28,16 @@ if ($_SESSION['logged_on_user'] === true):?>
 			<hr /><br />
 			<!-- profil pic ? -->
 			<div>
+				<h3>Edit your bio:</h3>
 				<form method="POST" action="index.php?action=update_account">
-					<label for="sumup">Edit your bio:</label><br />
 					<textarea id="sumup" name="sumup" ><?= $_SESSION['sumup'] ?></textarea><br />
+					<input type="submit" name="submit" />
+				</form>
+			</div>
+			<div>
+				<h3>Change your username:</h3>
+				<form method="POST" action="index.php?action=new_usn">
+					<input type="text" name="n_usn" placeholder="new username" required/><br />
 					<input type="submit" name="submit" />
 				</form>
 			</div>
@@ -44,6 +51,13 @@ if ($_SESSION['logged_on_user'] === true):?>
 					<input type="password" name="old_passwd" placeholder="current password" required/><br />
 					<input type="password" name="new_pass" placeholder="New password" required/><br />
 					<input type="password" name="new_passc" placeholder="confirm new password" required/><br />
+					<input type="submit" name="submit" />
+				</form>
+			</div>
+			<div>
+				<h3>Change your email adress:</h3>
+				<form method="POST" action="index.php?action=new_email">
+					<input type="email" name="email" placeholder="new email adress" required/><br />
 					<input type="submit" name="submit" />
 				</form>
 			</div>

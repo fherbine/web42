@@ -53,6 +53,21 @@ class AccountManager
 		mail($to, $subject, $content);
 	}
 
+	private function rmUsrPics()
+	{
+		$db = $this->dbConnect();
+
+		try
+		{
+			$req = $db->prepare('DELETE FROM imgs WHERE uid = ?');
+			$req->execute(array($_SESSION['uid']));
+		}
+		catch (Exception $e)
+		{
+			die('Error' . $e);
+		}
+	}
+
 	public function rmAccount($login, $passwd)
 	{
 		$db = $this->dbConnect();
@@ -65,6 +80,7 @@ class AccountManager
 			));
 			if ($req->rowCount() > 0)
 			{
+				$this->rmUsrPics();
 				session_destroy();
 				header('Location: index.php');
 			}
@@ -107,6 +123,53 @@ class AccountManager
 		catch(Exception $e)
 		{
 			echo "cannot update your bio.";
+		}
+	}
+
+	public function updateUsn($newUsn, $login)
+	{
+		$db = $this->dbConnect();
+		try
+		{
+			$u_tmp = $_SESSION['login'];
+			$request = $db->prepare('UPDATE passwd SET pseudo = :usn WHERE pseudo = :log');
+			$request->execute(array(
+				'usn' => htmlspecialchars($newUsn),
+				'log' => $login
+			));
+			if ($request->rowCount())
+			{
+				$_SESSION['login'] = htmlspecialchars($newUsn);
+				$request = $db->prepare('UPDATE imgs SET auth = :usn WHERE auth = :log');
+				$request->execute(array(
+					'usn' => htmlspecialchars($newUsn),
+					'log' => $u_tmp
+				));
+			}
+			header('Location: index.php?page=account');
+		}
+		catch(Exception $e)
+		{
+			echo "cannot update your username.";
+		}
+	}
+
+	public function updateEmail($newMail, $login)
+	{
+		$db = $this->dbConnect();
+		try
+		{
+			$request = $db->prepare('UPDATE passwd SET email = :nmail WHERE pseudo = :log');
+			$request->execute(array(
+				'nmail' => htmlspecialchars($newMail),
+				'log' => $login
+			));
+			$_SESSION['email'] = ($request->rowCount()) ? htmlspecialchars($newMail) : $_SESSION['email'];
+			header('Location: index.php?page=account');
+		}
+		catch(Exception $e)
+		{
+			echo "cannot update your mail adress.";
 		}
 	}
 
