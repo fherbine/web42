@@ -36,6 +36,8 @@ class CommentsManager
 				'auth' => htmlspecialchars($auth),
 				'content' => htmlspecialchars($content)
 			));
+			$req2 = $db->prepare('UPDATE imgs SET ncoms = (ncoms + 1) WHERE id = ?');
+			$req2->execute(array($img_id));
 			header("Location: index.php");
 		}
 		catch(Exception $e)

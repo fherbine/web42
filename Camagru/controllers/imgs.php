@@ -36,11 +36,11 @@ function sendNewPic()
 	return "toto";
 }
 
-function getUsrPics()
+function getUsrPics($user)
 {
 	$result = new PostPicsManager();
 
-	$req_res = $result->getUsrImg($_SESSION['login']);
+	$req_res = $result->getUsrImg($user);
 	// $req_res[] = array_map("base64_encode", $req_res[]);
 
 	require_once('views/profilView.php');

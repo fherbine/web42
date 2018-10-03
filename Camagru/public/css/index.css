@@ -23,6 +23,19 @@ article
 {
 	text-align: center;
 }
+
+.img_box h3 a
+{
+	color: black;
+	font-size: 1.5vw;
+	text-decoration: none;
+}
+
+.img_box h3 a:hover
+{
+	color: #353535;
+}
+
 img
 {
 	width:100%;

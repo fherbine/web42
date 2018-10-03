@@ -40,7 +40,12 @@
 	elseif (isset($_GET['action']) && $_GET['action'] === "postPic" && isset($_SESSION['logged_on_user']))
 		sendNewPic();
 	elseif (isset($_GET['page']) && $_GET['page'] === "profil" && $_SESSION['logged_on_user'])
-		getUsrPics();
+	{
+		if (isset($_GET['usn']))
+			getUsrPics($_GET['usn']);
+		else
+			getUsrPics($_SESSION['login']);
+	}
 	elseif (isset($_SESSION['logged_on_user']) && isset($_GET['action']) && isset($_GET['pic_id']) && $_GET['action'] === "img_status")
 		addLike();
 	elseif (isset($_SESSION['logged_on_user']) && isset($_GET['action']) && isset($_GET['img_id']) && $_GET['action'] === "postCom" && isset($_POST['com']) && $_POST['com'] !== "")

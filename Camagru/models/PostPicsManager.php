@@ -47,7 +47,7 @@ class PostPicsManager
 			if ($req->rowCount())
 				$req_res = $req->fetchAll();
 			$req_res['content'] = $req_res;
-			$req_res['urates'] = $this->getUsrRates($user);
+			$req_res['extras'] = $this->getUsrExtras($user);
 			return $req_res;
 		}
 		catch (Exception $e)
@@ -75,7 +75,7 @@ class PostPicsManager
 
 	}
 
-	private function getUsrRates($user)
+	private function getUsrExtras($user)
 	{
 		$db = $this->dbConnect();
 
@@ -83,7 +83,12 @@ class PostPicsManager
 		{
 			$req = $db->prepare('SELECT SUM(rate) AS u_rate FROM imgs WHERE auth = ?');
 			$req->execute(array($user));
-			$res = $req->fetch();
+			if ($req->rowCount())
+				$res['urates'] = $req->fetch();
+			$req2 = $db->prepare('SELECT pseudo, sumup, location FROM passwd WHERE pseudo = ?');
+			$req2->execute(array($user));
+			if ($req2->rowCount())
+				$res['infos'] = $req2->fetch();
 			return $res;
 		}
 		catch (Exception $e)
