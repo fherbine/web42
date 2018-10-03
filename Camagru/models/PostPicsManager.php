@@ -19,11 +19,10 @@ class PostPicsManager
 		$db = $this->dbConnect();
 		try
 		{
-			$req = $db->prepare('INSERT INTO imgs(auth, uid, upload_date, content, rate, ncoms) VALUES(:auth, :uid, NOW(), :content, :rate, :ncoms)');
+			$req = $db->prepare('INSERT INTO imgs(auth, uid, upload_date, rate, ncoms) VALUES(:auth, :uid, NOW(), :rate, :ncoms)');
 			$req->execute(array(
 				'auth' => $auth,
 				'uid' => $uid,
-				'content' => $content,
 				'rate' => 0,
 				'ncoms' => 0
 			));
@@ -43,7 +42,7 @@ class PostPicsManager
 		$req_res = array();
 		try
 		{
-			$req = $db->prepare('SELECT id, DATE_FORMAT(upload_date, \'%Y/%m/%d at %Hh%i\') AS up_date, content, rate, ncoms FROM imgs WHERE auth = ? ORDER BY id DESC');
+			$req = $db->prepare('SELECT id, DATE_FORMAT(upload_date, \'%Y/%m/%d at %Hh%i\') AS up_date, rate, ncoms, uid FROM imgs WHERE auth = ? ORDER BY id DESC');
 			$req->execute(array($user));
 			if ($req->rowCount())
 				$req_res = $req->fetchAll();
@@ -64,7 +63,7 @@ class PostPicsManager
 		$req_res = array();
 		try
 		{
-			$req = $db->query('SELECT id, DATE_FORMAT(upload_date, \'%Y/%m/%d at %Hh%i\') AS up_date, content, rate, ncoms, auth FROM imgs ORDER BY id DESC');
+			$req = $db->query('SELECT id, DATE_FORMAT(upload_date, \'%Y/%m/%d at %Hh%i\') AS up_date, rate, ncoms, auth, uid FROM imgs ORDER BY id DESC');
 			if ($req->rowCount())
 				$req_res = $req->fetchAll();
 			return $req_res;

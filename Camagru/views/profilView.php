@@ -36,7 +36,7 @@ $title = "photobooth42 - profil";
 		<article>
 			<?php foreach($req_res['content'] as $uimg): ?>
 				<div class="img_box">
-					<img alt=<?= '"' . $_SESSION['login'] . "-img-" . $uimg['up_date'] . '"' ?> src=<?= '"data:image/png;charset:utf-8;base64,' . base64_encode($uimg['content']) . '"'?> />
+					<img alt=<?= '"' . $_SESSION['login'] . "-img-" . $uimg['up_date'] . '"' ?> src=<?= '"public/user/' . $uimg['uid'] . '-' . $uimg['id'] . '.png"'?> />
 					<p><?=$uimg['up_date']?></p>
 					<div class="icons">
 						<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?> class=<?php echo (!getLike($uimg['id'])) ? "heart" : "heart_selected"; ?>>♥</a>  <?= $uimg['rate']?></p>

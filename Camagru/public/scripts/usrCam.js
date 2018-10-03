@@ -45,8 +45,9 @@ const button = document.querySelector('#screenshot-button');
 const img = document.querySelector('#screenshot-img');
 const video = document.querySelector('#screenshot-video');
 const vidFilter = document.querySelector("#filterV");
-vidFilter.src = 'public/imgs/42neg.png'; // default filter
-fpath = 'public/imgs/42neg.png';
+vidFilter.src = 'public/imgs/42.png'; // default filter
+fpath = 'public/imgs/42.png';
+const f42n = document.querySelector('#filter_42n');
 const f42 = document.querySelector('#filter_42');
 const fsun = document.querySelector('#filter_sun');
 const uploaded = document.querySelector('#uImg');
@@ -110,6 +111,14 @@ button.addEventListener("click", function()
 );
 
 f42.addEventListener("click", function()
+	{
+		fpath = 'public/imgs/42.png';
+		vidFilter.src = fpath;
+		//document.getElementById("cam").innerHTML += '<img src="public/imgs/42.png" alt="logo42"/>';
+	}
+);
+
+f42n.addEventListener("click", function()
 	{
 		fpath = 'public/imgs/42neg.png';
 		vidFilter.src = fpath;

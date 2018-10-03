@@ -27,7 +27,7 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 			<?php foreach($req_res as $uimg): ?>
 				<div class="img_box">
 					<h3><?= $uimg['auth'] ?></h3>
-					<img alt=<?= '"' . $uimg['auth'] . "-img-" . $uimg['up_date'] . '"' ?> src=<?= '"data:image/png;charset:utf-8;base64,' . base64_encode($uimg['content']) . '"'?> />
+					<img alt=<?= '"' . $uimg['auth'] . "-img-" . $uimg['up_date'] . '"' ?> src=<?= '"public/user/' . $uimg['uid'] . '-' . $uimg['id'] . '.png"'?> />
 					<p><?=$uimg['up_date']?></p>
 					<div class="under">
 						<?php foreach ($uimg['coms'] as $com): ?>

@@ -37,7 +37,8 @@ $title = "photobooth42 - Take a picture";
 <fieldset>
 	<legend>filtres</legend>
 	<div id="filters">
-		<button id="filter_42" autofocus><img src="./public/imgs/42neg.png" alt="logo42">logo 42</button>
+		<button id="filter_42" autofocus><img src="./public/imgs/42.png" alt="logo42">logo 42</button>
+		<button id="filter_42n" ><img src="./public/imgs/42neg.png" alt="logo42_negative">logo 42</button>
 		<button id="filter_sun"><img src="./public/imgs/sun.png" alt="sun">Sun glasses</button>
 	</div>
 </fieldset>
