@@ -9,7 +9,7 @@
 </head>
 <body>
 	<header>
-		<a href="index.php"> <i class="far fa-paper-plane"></i> <h1>PhotoBooth 42</h1></a>
+		<a href="index.php?page=reset"> <i class="far fa-paper-plane"></i> <h1>PhotoBooth 42</h1></a>
 		<div class = "rheader">
 			<?= $header_content ?>
 		</div>

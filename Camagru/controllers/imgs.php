@@ -59,8 +59,9 @@ function getPics()
 	$result = new PostPicsManager();
 	$res_com = new CommentsManager();
 	$pics = array();
+	$pagination = (isset($_COOKIE['pagination'])) ? $_COOKIE['pagination'] : 1;
 
-	$req_res = $result->getAllImg();
+	$req_res = $result->getAllImg($pagination);
 	foreach ($req_res as $master => $value)
 	{
 		$req_res[$master]['coms'] = $res_com->getImgCom($req_res[$master]['id'], 0);

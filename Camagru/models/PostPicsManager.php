@@ -72,15 +72,22 @@ class PostPicsManager
 
 	}
 
-	public function getAllImg()
+	public function getAllImg($pagination)
 	{
 		$db = $this->dbConnect();
 		$req_res = array();
+		$x = $pagination - 1;
 		try
 		{
-			$req = $db->query('SELECT id, DATE_FORMAT(upload_date, \'%Y/%m/%d at %Hh%i\') AS up_date, rate, ncoms, auth, uid FROM imgs ORDER BY id DESC');
+			$req = $db->query('SELECT id, DATE_FORMAT(upload_date, \'%Y/%m/%d at %Hh%i\') AS up_date, rate, ncoms, auth, uid FROM imgs ORDER BY id DESC LIMIT ' . ($x * 6) . ', ' . (($x * 6) + 6));
 			if ($req->rowCount())
 				$req_res = $req->fetchAll();
+			else
+			{
+				setcookie('pagination', 1);
+				echo "tutu";
+				header('Location: index.php');
+			}
 			return $req_res;
 		}
 		catch (Exception $e)

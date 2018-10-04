@@ -111,3 +111,32 @@ img
 	text-shadow: -1px -1px lightgrey;
 	background-color: #93bcff;
 }
+
+#pagination
+{
+	width: 40%;
+	margin:auto;
+	/*border: 1px solid red;*/
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+#pagination button
+{
+	padding:6px 0 6px 0;
+	margin-bottom: 4px;
+	width: 25%;
+	font:bold 13px Arial;
+	background: white;
+	color:#555;
+	border-radius:2px;
+	min-width:120px;
+	border:1px solid #ccc;
+}
+
+#pagination button:hover
+{
+	background-color: lightgrey;
+	border:1px solid grey;
+}

@@ -52,6 +52,14 @@
 		addLike();
 	elseif (isset($_SESSION['logged_on_user']) && isset($_GET['action']) && isset($_GET['img_id']) && $_GET['action'] === "postCom" && isset($_POST['com']) && $_POST['com'] !== "")
 		sendCom();
+	elseif (isset($_GET['page']) && ($_GET['page'] === "next" || $_GET['page'] === "previous" || $_GET['page'] === "reset"))
+	{
+		$val = (isset($_COOKIE['pagination'])) ? $_COOKIE['pagination'] : 1;
+		$add = ($_GET['page'] === "next") ? 1 : -1;
+		$add = ($_GET['page'] === "reset") ? 1 - $val: $add;
+		setcookie('pagination', $val + $add);
+		header('Location: index.php');
+	}
 	else
 	{
 		$req_res = getPics();

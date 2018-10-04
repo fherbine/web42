@@ -31,25 +31,35 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 					<p><?=$uimg['up_date']?></p>
 					<div class="under">
 						<?php foreach ($uimg['coms'] as $com): ?>
-							<div class="com"><div class="com_head"><p><?= $com['d_com'] ?></p>
-							<p><?= $com['auth'] ?></p></div>
-							<p><?= $com['content'] ?></p></div>
+							<div class="com">
+								<div class="com_head">
+									<p><?= $com['d_com'] ?></p>
+									<p><?= $com['auth'] ?></p>
+								</div>
+								<p><?= $com['content'] ?></p>
+							</div>
 						<?php endforeach; ?>
 						<div class="icons">
 							<?php if (isset($_SESSION['logged_on_user'])): ?>
 								<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?> class=<?php echo (!getLike($uimg['id'])) ? "heart" : "heart_selected"; ?>>♥</a>  <span class="hrate"><?= $uimg['rate']?></span></p>
+								<div class="form_container" >
+									<form method="post" action=<?= '"index.php?action=postCom&img_id=' . $uimg['id'] . '"' ?>>
+										<textarea name="com"></textarea>
+										<input type="submit" name="submit" value="‣" class="sent" />
+									</form>
+								</div>
 							<?php endif; ?>
-							<div class="form_container" >
-								<form method="post" action=<?= '"index.php?action=postCom&img_id=' . $uimg['id'] . '"' ?>>
-									<textarea name="com"></textarea>
-									<input type="submit" name="submit" value="‣" class="sent" />
-								</form>
-							</div>
 						</div>
 					</div>
 				</div>
 			<?php endforeach; ?>
 		</article>
+		<div id="pagination">
+			<?php if(isset($_COOKIE['pagination']) && $_COOKIE['pagination'] > 1): ?>
+				<p><a href="index.php?page=previous"><button>Previous</button></a></p>
+			<?php endif; ?>
+			<p><a href="index.php?page=next"><button>Next</button></a></p>
+		</div>
 	</section>
 <?php $content = ob_get_clean(); ?>
 
