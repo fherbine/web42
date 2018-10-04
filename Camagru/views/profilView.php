@@ -36,14 +36,14 @@ $title = "photobooth42 - profil";
 		<article>
 			<?php foreach($req_res['content'] as $uimg): ?>
 				<div class="img_box">
+					<?php if($_SESSION['uid'] == $uimg['uid']): ?>
+						<p id="del_parea">Are you sure you want to delete this picure ?  <a href=<?= '"index.php?action=del_pic&pic_id=' . $uimg['id'] . '"'?> id="del_pic_but" >X</a></p>
+					<?php endif; ?>
 					<img alt=<?= '"' . $_SESSION['login'] . "-img-" . $uimg['up_date'] . '"' ?> src=<?= '"public/user/' . $uimg['uid'] . '-' . $uimg['id'] . '.png"'?> />
 					<p><?=$uimg['up_date']?></p>
 					<div class="icons">
 						<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?> class=<?php echo (!getLike($uimg['id'])) ? "heart" : "heart_selected"; ?>>♥</a>  <?= $uimg['rate']?></p>
 						<p><i class="far fa-comment"></i><?= $uimg['ncoms'] ?></p>
-						<?php if($_SESSION['uid'] == $uimg['uid']): ?>
-							<p><a href=<?= '"index.php?action=del_pic&pic_id=' . $uimg['id'] . '"'?>>X</a></p>
-						<?php endif; ?>
 					</div>
 				</div>
 			<?php endforeach; ?>

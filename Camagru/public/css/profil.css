@@ -62,3 +62,42 @@ img
 	position: relative;
 	top: -40%;
 }
+
+/*#del_pic_but
+{
+	text-decoration: none;
+	color:black;
+}
+
+#del_pic_but:hover
+{
+	color: red;
+}*/
+
+#del_parea
+{
+	text-align: right;
+	color: white;
+	height:20px;
+	font-size: 2vw;
+	font-size: 1vmin;
+}
+
+#del_pic_but
+{
+	text-align: right;
+	text-decoration: none;
+	color: black;
+	margin-top: 5px;
+}
+
+#del_pic_but:hover
+{
+	color:red;
+}
+
+#del_parea:hover
+{
+	color: black;
+	background-color: #e8e8e8;
+}
