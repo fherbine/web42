@@ -31,6 +31,7 @@ $title = "photobooth42 - Take a picture";
 <div id="buttons">
 	<button id="screenshot-button" class="addPicButs">take a picture</button>
 	<label for="uImg" class="addPicButs">Upload your own</label>
+	<button id="keep-it" class="addPicButs" style="display:none;">Post</button>
 </div>
 
 <input type="file" name="image" accept="image/png" id="uImg"/>
