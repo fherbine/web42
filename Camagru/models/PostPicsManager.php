@@ -14,6 +14,21 @@ class PostPicsManager
 		return $fpath;
 	}
 
+	public function deleteImg($uid, $iid)
+	{
+		$db = $this->dbConnect();
+
+		try
+		{
+			$req = $db->prepare('DELETE FROM imgs WHERE id = ? AND uid = ?');
+			$req->execute(array($iid, $uid));
+		}
+		catch(Exception $e)
+		{
+			echo 'an error occured ' . $e->getMessage();
+		}
+	}
+
 	public function sendImg($content, $auth, $uid)
 	{
 		$db = $this->dbConnect();

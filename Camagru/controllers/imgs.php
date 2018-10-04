@@ -46,6 +46,14 @@ function getUsrPics($user)
 	require_once('views/profilView.php');
 }
 
+function deleteUserPic()
+{
+	$result = new PostPicsManager();
+	if (isset($_GET['pic_id']))
+		$result->deleteImg(htmlspecialchars($_SESSION['uid']), htmlspecialchars($_GET['pic_id']));
+	header('Location: index.php?page=profil');
+}
+
 function getPics()
 {
 	$result = new PostPicsManager();

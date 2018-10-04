@@ -41,6 +41,9 @@ $title = "photobooth42 - profil";
 					<div class="icons">
 						<p><a href=<?= '"index.php?action=img_status&pic_id=' . $uimg['id'] . '"' ?> class=<?php echo (!getLike($uimg['id'])) ? "heart" : "heart_selected"; ?>>♥</a>  <?= $uimg['rate']?></p>
 						<p><i class="far fa-comment"></i><?= $uimg['ncoms'] ?></p>
+						<?php if($_SESSION['uid'] == $uimg['uid']): ?>
+							<p><a href=<?= '"index.php?action=del_pic&pic_id=' . $uimg['id'] . '"'?>>X</a></p>
+						<?php endif; ?>
 					</div>
 				</div>
 			<?php endforeach; ?>

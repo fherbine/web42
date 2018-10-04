@@ -3,6 +3,40 @@
 class LikesManager
 {
 
+	public function sendMail($to, $subject, $content)
+	{
+		mail($to, $subject, $content);
+	}
+
+	public function getPicAuthMail($iid)
+	{
+		$db = $this->dbConnect();
+		try
+		{
+			$req = $db->prepare('SELECT auth FROM imgs WHERE id = ?');
+			$req->execute(array($iid));
+			$res = $req->fetch();
+
+			$req = $db->prepare('SELECT email FROM passwd WHERE pseudo = ?');
+			$req->execute(array($res['auth']));
+			$ret = $req->fetch();
+			return $ret['email'];
+		}
+		catch(Exception $e)
+		{
+			echo "An error occured : ". $e->getMessage();
+		}
+	}
+
+	public function sendLikeNotif($iid)
+	{
+		$to = $this->getPicAuthMail($iid);
+		$subject = "New like on PhotoBooth 42 !";
+		$content = "Congrats !
+		Someone has just liked one of your photos !";
+		$this->sendMail($to, $subject, $content);
+	}
+
 	public function checkUsrLike($uid, $img_id)
 	{
 		$db = $this->dbConnect();
@@ -38,6 +72,7 @@ class LikesManager
 			{
 				$req2 = $db->prepare('UPDATE imgs SET rate = (rate + 1) WHERE id = ?');
 				$req2->execute(array($img_id));
+				$this->sendLikeNotif($img_id);
 				header("Location: index.php");
 			}
 			catch (Exception $e)

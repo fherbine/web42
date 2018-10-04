@@ -46,7 +46,7 @@ class LogManager
 			catch(Exception $e) {echo "An error occured" . $e->getMessage();}
 			$url = 'http://localhost:8080/camagru/index.php?page=activate&login=' . urlencode($pseudo) . '&key=' . urlencode($confirm_key); ///////////////////////////// ----------------------------------------
 			$content = 'Thanks for your subscription ' . htmlspecialchars($pseudo) . ' and welcome on board.
-			 Please click on the following link to activate your account: ' . $url;
+			Please click on the following link to activate your account: ' . $url;
 			$content = wordwrap($content, 70, "\r\n");
 			$this->sendMail('felix.herbinet@yahoo.com', $email, 'Activation of your account', $content);
 			return "ok";

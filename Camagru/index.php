@@ -46,6 +46,8 @@
 		else
 			getUsrPics($_SESSION['login']);
 	}
+	elseif (isset($_GET['action']) && $_GET['action'] === "del_pic" && isset($_SESSION['logged_on_user']))
+		deleteUserPic();
 	elseif (isset($_SESSION['logged_on_user']) && isset($_GET['action']) && isset($_GET['pic_id']) && $_GET['action'] === "img_status")
 		addLike();
 	elseif (isset($_SESSION['logged_on_user']) && isset($_GET['action']) && isset($_GET['img_id']) && $_GET['action'] === "postCom" && isset($_POST['com']) && $_POST['com'] !== "")
