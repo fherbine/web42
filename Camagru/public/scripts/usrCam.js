@@ -44,7 +44,7 @@ function postImg(content, fpath)
 			if (xhr.readyState == XMLHttpRequest.DONE)
 			{
     			var id = getCookie('AddingPicID');
-    			box.innerHTML += '<input type="image" src="public/user/' + uid + '-' + id + '.png" />';
+    			box.innerHTML += '<form method="POST" action="index.php?action=SendPic&iid=' + id + '"><input type="image" src="public/user/' + uid + '-' + id + '.png" /></form>';
     		}
 		});
 	}
@@ -74,17 +74,17 @@ var select, getImg;
 const width = 400;
 var height = 0;
 
-function createKeepButton()
-{
-	keep.style = 'display:block;';
-}
+// function createKeepButton()
+// {
+// 	keep.style = 'display:block;';
+// }
 
-keep.addEventListener("click", function()
-	{
-		var content = src.split(',')[1];
-		postImg(content, fpath);
-	}
-);
+// keep.addEventListener("click", function()
+// 	{
+// 		var content = src.split(',')[1];
+// 		postImg(content, fpath);
+// 	}
+// );
 
 button.addEventListener('click', function()
 	{
@@ -94,7 +94,7 @@ button.addEventListener('click', function()
 		ctx = canvas.getContext('2d');
 		ctx.drawImage(video, 0, 0, width, height);
 		src = canvas.toDataURL('image/png');
-		createKeepButton();
+		// createKeepButton();
 		var content = src.split(',')[1];
 		postImg(content, fpath);
 	}
@@ -112,7 +112,7 @@ function uploadVisual(file)
 	});
 
 	upl.readAsDataURL(file);
-	createKeepButton();
+	// createKeepButton();
 }
 
 uploaded.addEventListener('change', function()

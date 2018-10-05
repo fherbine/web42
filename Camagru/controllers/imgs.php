@@ -36,24 +36,13 @@ function AddNewPic()
 	return "toto";
 }
 
-function addImgtoDb()
+function addImgToDb()
 {
 	$result = new PostPicsManager();
 
-	if (isset($_SESSION['uid']) && isset($_SESSION['login']))
-		$result->addImgtoDb($_SESSION['uid'], $_SESSION['login']);
-}
-
-function addSeveralImgs($n)
-{
-	$i = 0;
-	while($i < $n)
-	{
-		addImgtoDb();
-		$i = $i + 1;
-	}
-	setcookie('AddingPicID', 0);
-	setcookie('initPicID', 0);
+	if (isset($_SESSION['uid']) && isset($_SESSION['login']) && isset($_GET['iid']))
+		$result->addImgtoDb($_SESSION['uid'], $_SESSION['login'], $_GET['iid']) ;
+	header('Location: index.php?page=profil.php');
 }
 
 function getUsrPics($user)

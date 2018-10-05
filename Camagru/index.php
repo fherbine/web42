@@ -39,6 +39,8 @@
 		updateUsn();
 	elseif (isset($_GET['action']) && $_GET['action'] === "AddPic" && isset($_SESSION['logged_on_user']))
 		AddNewPic();
+	elseif (isset($_GET['action']) && $_GET['action'] === "SendPic" && isset($_SESSION['logged_on_user']))
+		AddImgToDb();
 	elseif (isset($_GET['page']) && $_GET['page'] === "profil" && $_SESSION['logged_on_user'])
 	{
 		if (isset($_GET['usn']))

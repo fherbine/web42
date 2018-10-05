@@ -22,9 +22,9 @@ $title = "photobooth42 - Take a picture";
 		<img src="" id="filterV" />
 		<video id="screenshot-video" autoplay></video>
 	</div>
-	<form method="POST" action="#">
+	
 		<div id="img_box"></div>
-	</form>
+	
 </div>
 <canvas style="display:none;"></canvas>
 

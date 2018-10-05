@@ -29,13 +29,16 @@ class PostPicsManager
 		}
 	}
 
-	public function addImgtoDb($uid, $auth)
+	public function addImgtoDb($uid, $auth, $iid)
 	{
 		$db = $this->dbConnect();
+		setcookie('initPicID', -1);
+		setcookie('AddingPicID', -1);
 		try
 		{
-			$req = $db->prepare('INSERT INTO imgs(auth, uid, upload_date, rate, ncoms) VALUES(:auth, :uid, NOW(), :rate, :ncoms)');
+			$req = $db->prepare('INSERT INTO imgs(id, auth, uid, upload_date, rate, ncoms) VALUES(:iid, :auth, :uid, NOW(), :rate, :ncoms)');
 			$req->execute(array(
+				'iid' => $iid,
 				'auth' => htmlspecialchars($auth),
 				'uid' => $uid,
 				'rate' => 0,
@@ -56,12 +59,22 @@ class PostPicsManager
 			if (isset($_COOKIE['AddingPicID']))
 				$iid = $_COOKIE['AddingPicID'];
 			else 
-				$iid = 0;
+				$iid = -1;
+			echo "herre" . $iid;
 			$req = $db->query('SELECT MAX(id) AS iid FROM imgs');
-			if ($iid == 0)
+			if ($iid == -1)
 			{
-				$iid = $req->fetch()['iid'];
+				$fetch = $req->fetch();
+				if (isset($fetch['iid']))
+				{
+					echo "fetch";
+					$iid = $fetch['iid'];
+				}
+				else
+					$iid = 0;
+				echo $iid;
 				setcookie('initPicID', $iid);
+				$iid++;
 			}
 			else
 				$iid = $iid + 1;
@@ -108,8 +121,8 @@ class PostPicsManager
 			else
 			{
 				setcookie('pagination', 1);
-				echo "tutu";
-				header('Location: index.php');
+				if ($x > 0)
+					header('Location: index.php');
 			}
 			return $req_res;
 		}
