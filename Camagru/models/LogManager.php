@@ -17,9 +17,10 @@ class LogManager
 			$_SESSION['ulocate'] = $user_info['location'];
 			$_SESSION['logged_on_user'] = true;
 			$_SESSION['logged_on_admin'] = ($user_info['admin'] = '0') ? false : true; 
+			return "ok";
 		}
 		else
-			return "error";
+			return "Unknown user or password mismatch";
 	}
 
 	public function newUsr($email, $password, $pseudo, $admin)
@@ -29,6 +30,8 @@ class LogManager
 		$exist->execute(array($email, $pseudo));
 		if (!($exist->fetch()))
 		{
+			if (!(preg_match("#^.*[0-9]+.*$#", $password) && preg_match("#^.*[A-Z]+.*$#", $password) && strlen($password) >= 6))
+				return "Too weak password.";
 			$confirm_key = hash('md5', rand());
 			try {
 			$request = $db->prepare('INSERT INTO passwd(email, passwd, pseudo, sign_date, admin, sumup, location, confirm, confirm_key)
@@ -52,7 +55,7 @@ class LogManager
 			return "ok";
 		}
 		else
-			return "usr already exist"; ///// -------------------------------------------
+			return "user already exist"; ///// -------------------------------------------
 	}
 
 	public function sendMail($from, $to, $subject, $content)
@@ -69,7 +72,8 @@ class LogManager
 			///////////////// already activated
 			$request = $db->prepare('UPDATE passwd SET confirm = 1 WHERE pseudo = :pseudo AND confirm_key = :key');
 			$request->execute(array('pseudo' => $login, 'key' => $key));
-			echo "Your account is now activated ! Welcome on board !";
+			if ($request->rowCount())
+				return "Your account is now activated ! Welcome on board !";
 		}
 		catch(Exception $e)
 		{

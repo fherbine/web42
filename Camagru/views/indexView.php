@@ -23,6 +23,10 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 
 <?php ob_start(); ?>
 	<section>
+		<?php
+				if (isset($_GET['msg']))
+					echo '<p class="msg">' . htmlspecialchars($_GET['msg']) . '</p>';
+			?>
 		<article>
 			<?php foreach($req_res as $uimg): ?>
 				<div class="img_box">

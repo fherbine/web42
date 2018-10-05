@@ -21,6 +21,10 @@ $title = "photobooth42 - Index";
 		</a>
 		<div class="sign_box">
 			<h2>Sign in</h2>
+			<?php
+				if (isset($_GET['issue']))
+					echo '<p class="issue">' . htmlspecialchars($_GET['issue']) . '</p>';
+			?>
 			<form action="index.php?action=signin" method="POST">
 				<label for="username">username</label>
 				<input type="text" name="username" id="username" required /><br />

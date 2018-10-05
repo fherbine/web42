@@ -8,7 +8,10 @@ function signin()
 	{
 		$result = new LogManager();
 		$res = $result->logUsr($_POST['username'], $_POST['passwd']);
-		header('Location: index.php');
+		if ($res == "ok")
+			header('Location: index.php');
+		else
+			header('Location: index.php?page=log&issue=' . $res);
 	}
 	else
 		echo "An error occurred, check if your inputs are not empty and try again.";
@@ -21,42 +24,62 @@ function signup()
 		$admin = 0;
 		$result = new LogManager();
 		$res = $result->newUsr($_POST['email'], $_POST['passwd'], $_POST['pseudo'], $admin);
-		echo $res;
+		if ($res == "ok")
+			header('Location: index.php?msg=Check your emails to confirm your account.');
+		else
+			header('Location: index.php?page=register&issue=' . $res);
 	}
 	else
-		echo "An error occurred, check if your inputs are not empty and try again.";
+		header('Location: index.php?page=register&issue=An error occurred, check if your inputs are not empty and try again.');
 }
 
 function activation()
 {
 	$result = new LogManager();
-	$result->confirmAccount($_GET['key'], $_GET['login']);
+	$res = $result->confirmAccount($_GET['key'], $_GET['login']);
+	header('Location: index.php?msg=' . $res);
+
 }
 
 function changePw()
 {
 	$result = new AccountManager();
 	if (isset($_GET['key']) && !isset($_SESSION['logged_on_user']) && $_POST['npasswd'] === $_POST['cnpasswd'])
-		$result->changePasswd(1, $_POST['npasswd'], null, $_GET['key']);
+	{
+		$res = $result->changePasswd(1, $_POST['npasswd'], null, $_GET['key']);
+		if ($res != "ok")
+			header("Location: index.php?msg=" . $res);
+		else
+			header("Location: index.php");
+	}
 	else if(isset($_POST['old_passwd']) && isset($_POST['new_pass']) && $_POST['new_pass'] === $_POST['new_passc'])
 	{
-		var_dump($_POST);
 		if ($result->truePass($_SESSION['login'], $_POST['old_passwd']))
 		{
-			$result->changePasswd(0, $_POST['new_pass'], $_SESSION['login'], null);
+			$res = $result->changePasswd(0, $_POST['new_pass'], $_SESSION['login'], null);
 		}
 		else
-			echo "wrong password";
+			$res = "wrong password";
+		if ($res != "ok")
+			header("Location: index.php?page=account&issue=" . $res);
+		else
+			header("Location: index.php");
 	}
 	else
-		echo "error";
+	{
+		if (isset($_GET['key']))
+			header("Location: index.php?msg=Passwords mismatch");
+		else
+			header("Location: index.php?page=account&issue=Passwords mismatch");
+	}
 }
 
 function delAccount()
 {
 	$result = new AccountManager();
 	if (isset($_POST['passwd']))
-		$result->rmAccount($_SESSION['login'], $_POST['passwd']);
+		$res = $result->rmAccount($_SESSION['login'], $_POST['passwd']);
+	header('Location: index.php?page=account&issue=' . $res);
 }
 
 function sendRstMail()

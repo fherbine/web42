@@ -22,6 +22,10 @@ if ($_SESSION['logged_on_user'] === true):?>
 <!-- Main view -->
 
 <?php ob_start(); ?>
+	<?php
+		if (isset($_GET['issue']))
+			echo '<p class="issue">' . htmlspecialchars($_GET['issue']) . '</p>';
+	?>
 	<section id="container">
 		<div>
 			<h2>Public settings</h2>

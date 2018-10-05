@@ -21,6 +21,10 @@ $title = "photobooth42 - Index";
 		</a>
 		<div class="sign_box">
 			<h2>Sign up</h2>
+			<?php
+				if (isset($_GET['issue']))
+					echo '<p class="issue">' . htmlspecialchars($_GET['issue']) . '</p>';
+			?>
 			<form action="index.php?action=signup" method="POST">
 				<label for="email">email adress</label>
 				<input type="email" name="email" id="email" required /><br />

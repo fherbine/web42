@@ -88,3 +88,9 @@ input[type="submit"], input[type="reset"], input[type="file"], button
 {
 	cursor: pointer;
 }
+
+.issue
+{
+	color: #7f011a;
+	text-shadow: 1px 1px 0px #f7cfd7;
+}

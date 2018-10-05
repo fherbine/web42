@@ -15,13 +15,13 @@
 		signup();
 	elseif (isset($_GET['page']) && $_GET['page'] === "activate" && isset($_GET['key']) && isset($_GET['login']))
 		activation();
-	elseif (isset($_GET['page']) && $_GET['page'] === "add_pic" && $_SESSION['logged_on_user'] === true)
+	elseif (isset($_GET['page']) && $_GET['page'] === "add_pic" && isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true)
 		require_once('views/add_pic.php');
-	elseif (isset($_GET['page']) && $_GET['page'] === "account" && $_SESSION['logged_on_user'] === true)
+	elseif (isset($_GET['page']) && $_GET['page'] === "account" && isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true)
 		require_once('views/account.php');
 	elseif (isset($_GET['action']) && $_GET['action'] === "newpw")
 		changePw();
-	elseif (isset($_GET['action']) && $_GET['action'] === "rm_acc" && $_SESSION['logged_on_user'] === true)
+	elseif (isset($_GET['action']) && $_GET['action'] === "rm_acc" && isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true)
 		delAccount();
 	elseif (isset($_GET['page']) &&  $_GET['page'] === "reset_mail" && !isset($_SESSION['logged_on_user']))
 		require_once('views/reset_mail.php');
