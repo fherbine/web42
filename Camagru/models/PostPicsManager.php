@@ -29,7 +29,7 @@ class PostPicsManager
 		}
 	}
 
-	public function sendImg($content, $auth, $uid)
+	public function addImgtoDb($uid, $auth)
 	{
 		$db = $this->dbConnect();
 		try
@@ -41,8 +41,31 @@ class PostPicsManager
 				'rate' => 0,
 				'ncoms' => 0
 			));
-			$req2 = $db->query('SELECT MAX(id) AS iid FROM imgs');
-			$iid = $req2->fetch()['iid'];
+		}
+		catch (Exception $e)
+		{
+			echo 'an error occured during image uploading' . $e->getMessage();
+		}
+	}
+
+	public function sendImg($content, $uid)
+	{
+		$db = $this->dbConnect();
+		try
+		{
+			if (isset($_COOKIE['AddingPicID']))
+				$iid = $_COOKIE['AddingPicID'];
+			else 
+				$iid = 0;
+			$req = $db->query('SELECT MAX(id) AS iid FROM imgs');
+			if ($iid == 0)
+			{
+				$iid = $req->fetch()['iid'];
+				setcookie('initPicID', $iid);
+			}
+			else
+				$iid = $iid + 1;
+			setcookie('AddingPicID', $iid);
 			return $this->createUsrImgPage($uid, $content, $iid);
 		}
 		catch (Exception $e)

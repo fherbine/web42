@@ -3,7 +3,7 @@ require_once('models/CommentsManager.php');
 require_once('models/PostPicsManager.php');
 
 
-function sendNewPic()
+function AddNewPic()
 {
 	$result = new PostPicsManager();
 	$auth = $_SESSION['login'];
@@ -15,7 +15,7 @@ function sendNewPic()
 
 	if (isset($_POST['camContent']))
 	{
-		$ipath = $result->sendImg(base64_decode($_POST['camContent']), $auth, $_SESSION['uid']);
+		$ipath = $result->sendImg(base64_decode($_POST['camContent']), $_SESSION['uid']);
 	}
 
 	if (isset($_POST['fpath']))
@@ -34,6 +34,26 @@ function sendNewPic()
 	// else
 		// $result->sendImg($_POST['content'], $auth);
 	return "toto";
+}
+
+function addImgtoDb()
+{
+	$result = new PostPicsManager();
+
+	if (isset($_SESSION['uid']) && isset($_SESSION['login']))
+		$result->addImgtoDb($_SESSION['uid'], $_SESSION['login']);
+}
+
+function addSeveralImgs($n)
+{
+	$i = 0;
+	while($i < $n)
+	{
+		addImgtoDb();
+		$i = $i + 1;
+	}
+	setcookie('AddingPicID', 0);
+	setcookie('initPicID', 0);
 }
 
 function getUsrPics($user)

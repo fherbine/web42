@@ -37,8 +37,8 @@
 		updateEmail();
 	elseif (isset($_GET['action']) && $_GET['action'] === "new_usn" && isset($_SESSION['logged_on_user']))
 		updateUsn();
-	elseif (isset($_GET['action']) && $_GET['action'] === "postPic" && isset($_SESSION['logged_on_user']))
-		sendNewPic();
+	elseif (isset($_GET['action']) && $_GET['action'] === "AddPic" && isset($_SESSION['logged_on_user']))
+		AddNewPic();
 	elseif (isset($_GET['page']) && $_GET['page'] === "profil" && $_SESSION['logged_on_user'])
 	{
 		if (isset($_GET['usn']))

@@ -23,6 +23,12 @@ function activeXHR()
 	return xhr;
 }
 
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
 function postImg(content, fpath)
 {
 	var xhr = activeXHR();
@@ -31,9 +37,16 @@ function postImg(content, fpath)
 
 	if (xhr)
 	{
-		xhr.open("POST", "index.php?action=postPic", true);
+		xhr.open("POST", "index.php?action=AddPic", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		console.log(xhr.send("camContent=" + content + "&fpath=" + fpath));
+		xhr.addEventListener('readystatechange', function() {
+			if (xhr.readyState == XMLHttpRequest.DONE)
+			{
+    			var id = getCookie('AddingPicID');
+    			box.innerHTML += '<input type="image" src="public/user/' + uid + '-' + id + '.png" />';
+    		}
+		});
 	}
 }
 
@@ -42,7 +55,7 @@ const constraints = {
 };
 
 const button = document.querySelector('#screenshot-button');
-const img = document.querySelector('#screenshot-img');
+var src;
 const video = document.querySelector('#screenshot-video');
 const vidFilter = document.querySelector("#filterV");
 vidFilter.src = 'public/imgs/42.png'; // default filter
@@ -52,6 +65,8 @@ const f42 = document.querySelector('#filter_42');
 const fsun = document.querySelector('#filter_sun');
 const uploaded = document.querySelector('#uImg');
 const keep = document.querySelector('#keep-it');
+const box = document.querySelector('#img_box');
+const uid = document.querySelector('#uid').innerHTML;
 
 const canvas = document.createElement('canvas');
 
@@ -66,8 +81,7 @@ function createKeepButton()
 
 keep.addEventListener("click", function()
 	{
-		var content = img.src.split(',')[1];
-		console.log("debuggg");
+		var content = src.split(',')[1];
 		postImg(content, fpath);
 	}
 );
@@ -79,8 +93,10 @@ button.addEventListener('click', function()
 		canvas.height = height;
 		ctx = canvas.getContext('2d');
 		ctx.drawImage(video, 0, 0, width, height);
-		img.src = canvas.toDataURL('image/png');
+		src = canvas.toDataURL('image/png');
 		createKeepButton();
+		var content = src.split(',')[1];
+		postImg(content, fpath);
 	}
 );
 
@@ -90,7 +106,9 @@ function uploadVisual(file)
 
 	upl.addEventListener('load', function()
 	{
-		img.src = this.result;
+		src = this.result;
+		var content = src.split(',')[1];
+		postImg(content, fpath);
 	});
 
 	upl.readAsDataURL(file);

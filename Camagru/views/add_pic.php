@@ -16,22 +16,21 @@ $title = "photobooth42 - Take a picture";
 <!-- Main content -->
 
 <?php ob_start(); ?>
-
+<span style="display:none;" id="uid"><?php if (isset($_SESSION['uid'])){echo $_SESSION['uid'];} ?></span>
 <div id="cam">
 	<div class="cam_elem">
 		<img src="" id="filterV" />
 		<video id="screenshot-video" autoplay></video>
 	</div>
-	<div class="cam_elem">
-		<img src="" id="screenshot-img" class="cam_elem">
-	</div>
+	<form method="POST" action="#">
+		<div id="img_box"></div>
+	</form>
 </div>
 <canvas style="display:none;"></canvas>
 
 <div id="buttons">
 	<button id="screenshot-button" class="addPicButs">take a picture</button>
 	<label for="uImg" class="addPicButs">Upload your own</label>
-	<button id="keep-it" class="addPicButs" style="display:none;">Post</button>
 </div>
 
 <input type="file" name="image" accept="image/png" id="uImg"/>
