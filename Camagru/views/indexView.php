@@ -28,6 +28,7 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 					echo '<p class="msg">' . htmlspecialchars($_GET['msg']) . '</p>';
 			?>
 		<article>
+			<?php if($req_res): ?>
 			<?php foreach($req_res as $uimg): ?>
 				<div class="img_box">
 					<h3><a href=<?php  echo (isset($_SESSION) && isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true) ? '"index.php?page=profil&usn=' .$uimg['auth'] . '"' : '"#"' ?>><?= $uimg['auth'] ?></a></h3>
@@ -57,6 +58,7 @@ if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] === true):
 					</div>
 				</div>
 			<?php endforeach; ?>
+		<?php endif; ?>
 		</article>
 		<div id="pagination">
 			<?php if(isset($_COOKIE['pagination']) && $_COOKIE['pagination'] > 1): ?>

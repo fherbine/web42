@@ -17,9 +17,11 @@ class LikesManager
 			$req->execute(array($iid));
 			$res = $req->fetch();
 
-			$req = $db->prepare('SELECT email FROM passwd WHERE pseudo = ?');
+			$req = $db->prepare('SELECT email, notif FROM passwd WHERE pseudo = ?');
 			$req->execute(array($res['auth']));
 			$ret = $req->fetch();
+			if ($ret['notif'] == 0)
+				return false;
 			return $ret['email'];
 		}
 		catch(Exception $e)
@@ -34,7 +36,8 @@ class LikesManager
 		$subject = "New like on PhotoBooth 42 !";
 		$content = "Congrats !
 		Someone has just liked one of your photos !";
-		$this->sendMail($to, $subject, $content);
+		if ($to)
+			$this->sendMail($to, $subject, $content);
 	}
 
 	public function checkUsrLike($uid, $img_id)

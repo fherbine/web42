@@ -65,6 +65,13 @@ if ($_SESSION['logged_on_user'] === true):?>
 					<input type="submit" name="submit" />
 				</form>
 			</div>
+			<div>
+				<label for="nstat"><h3>Do you want to receive notifications ?</h3></label>
+				<form method="POST" action="index.php?action=notif_status">
+					<input type="checkbox" name="notif" id="nstat" <?= (isset($_SESSION['notif']) && $_SESSION['notif']) ? 'checked' : ''; ?>/><br />
+					<input type="submit" name="submit" />
+				</form>
+			</div>
 			<div id="delete_area">
 				<h3>Delete your account:</h3>
 				<p><span style="font-weight: bold;">NOTE:</span> This action is irreversible, please make sure that you want to delete your account and all your data !</p>

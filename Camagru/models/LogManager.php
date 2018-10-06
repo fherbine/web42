@@ -16,14 +16,29 @@ class LogManager
 			$_SESSION['sumup'] = $user_info['sumup']; 
 			$_SESSION['ulocate'] = $user_info['location'];
 			$_SESSION['logged_on_user'] = true;
-			$_SESSION['logged_on_admin'] = ($user_info['admin'] = '0') ? false : true; 
+			$_SESSION['notif'] = $user_info['notif']; 
 			return "ok";
 		}
 		else
 			return "Unknown user or password mismatch";
 	}
 
-	public function newUsr($email, $password, $pseudo, $admin)
+	public function tblCreated()
+	{
+		$db = $this->dbConnect();
+		try
+		{
+			$db->query('SELECT * FROM passwd');
+			return true;
+		}
+		catch(Exception $e)
+		{
+			return false;
+		}
+		return false;
+	}
+
+	public function newUsr($email, $password, $pseudo, $notif)
 	{
 		$db = $this->dbConnect();
 		$exist = $db->prepare('SELECT * FROM passwd WHERE email = ? OR pseudo = ?');
@@ -34,19 +49,19 @@ class LogManager
 				return "Too weak password.";
 			$confirm_key = hash('md5', rand());
 			try {
-			$request = $db->prepare('INSERT INTO passwd(email, passwd, pseudo, sign_date, admin, sumup, location, confirm, confirm_key)
-				VALUES(:email, :password, :pseudo, NOW(), :admin, :sumup, :locate, :confirm, :confirm_key)');
+			$request = $db->prepare('INSERT INTO passwd(email, passwd, pseudo, sign_date, notif, sumup, location, confirm, confirm_key)
+				VALUES(:email, :password, :pseudo, NOW(), :notif, :sumup, :locate, :confirm, :confirm_key)');
 			$request->execute(array('email' => htmlspecialchars($email),
 								'password' => hash('whirlpool', htmlspecialchars($password)),
 								'pseudo' => htmlspecialchars($pseudo),
-								'admin' => $admin,
+								'notif' => $notif,
 								'sumup' => 'Hey I\'m new on Photobooth 42 !',
 								'locate' => '',
 								'confirm' => 0,
 								'confirm_key' => $confirm_key
 							)); ///////////////////////// -------------------------------- rand -> conf key
 		}
-			catch(Exception $e) {echo "An error occured" . $e->getMessage();}
+			catch(Exception $e) {echo "An error occured" . $e->getMessage();exit();}
 			$url = 'http://localhost:8080/camagru/index.php?page=activate&login=' . urlencode($pseudo) . '&key=' . urlencode($confirm_key); ///////////////////////////// ----------------------------------------
 			$content = 'Thanks for your subscription ' . htmlspecialchars($pseudo) . ' and welcome on board.
 			Please click on the following link to activate your account: ' . $url;

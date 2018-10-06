@@ -71,10 +71,13 @@ function getPics()
 	$pagination = (isset($_COOKIE['pagination'])) ? $_COOKIE['pagination'] : 1;
 
 	$req_res = $result->getAllImg($pagination);
-	foreach ($req_res as $master => $value)
+	if ($req_res)
 	{
-		$req_res[$master]['coms'] = $res_com->getImgCom($req_res[$master]['id'], 0);
-		// var_dump($master);
+		foreach ($req_res as $master => $value)
+		{
+			$req_res[$master]['coms'] = $res_com->getImgCom($req_res[$master]['id'], 0);
+			// var_dump($master);
+		}
 	}
 	// $req_res[] = array_map("base64_encode", $req_res[]);
 	return ($req_res);

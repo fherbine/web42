@@ -178,6 +178,26 @@ class AccountManager
 		header('Location: index.php?page=account&issue=' . $res);
 	}
 
+	public function updateNstatus($login)
+	{
+		$db = $this->dbConnect();
+		try
+		{
+			$request = $db->prepare('UPDATE passwd SET notif = :nstat WHERE pseudo = :log');
+			$request->execute(array(
+				'nstat' => (isset($_POST['notif'])) ? 1 : 0,
+				'log' => $login
+			));
+			$_SESSION['notif'] = (isset($_POST['notif'])) ? 1 : 0;
+			header('Location: index.php?page=account');
+		}
+		catch(Exception $e)
+		{
+			header('Location: index.php?page=account');
+		}
+		header('Location: index.php?page=account');
+	}
+
 	public function updateEmail($newMail, $login)
 	{
 		$db = $this->dbConnect();

@@ -128,8 +128,9 @@ class PostPicsManager
 		}
 		catch (Exception $e)
 		{
-			echo "An error occured when tried to get datas: " . $e->getMessage();
+			return false;
 		}
+		return false;
 
 	}
 

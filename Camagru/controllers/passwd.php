@@ -21,9 +21,9 @@ function signup()
 {
 	if (isset($_POST) && isset($_POST['email']) && isset($_POST['passwd']) && isset($_POST['pseudo']) && $_POST['passwd'] === $_POST['passwd_confirm'])
 	{
-		$admin = 0;
+		$notif = 1;
 		$result = new LogManager();
-		$res = $result->newUsr($_POST['email'], $_POST['passwd'], $_POST['pseudo'], $admin);
+		$res = $result->newUsr($_POST['email'], $_POST['passwd'], $_POST['pseudo'], $notif);
 		if ($res == "ok")
 			header('Location: index.php?msg=Check your emails to confirm your account.');
 		else
@@ -31,6 +31,12 @@ function signup()
 	}
 	else
 		header('Location: index.php?page=register&issue=An error occurred, check if your inputs are not empty and try again.');
+}
+
+function t_verif()
+{
+	$result = new LogManager();
+	return $result->tblCreated(); 
 }
 
 function activation()
@@ -107,4 +113,10 @@ function updateUsn()
 	$result = new AccountManager();
 	if (isset($_POST['n_usn']))
 		$result->updateUsn($_POST['n_usn'], $_SESSION['login']);
+}
+
+function updateNstat()
+{
+	$result = new AccountManager();
+	$result->updateNstatus($_SESSION['login']);
 }
