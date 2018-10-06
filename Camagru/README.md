@@ -6,4 +6,7 @@ and share with everybody on the plateform.
 ## Quick overview
 
 ![cap3](https://user-images.githubusercontent.com/32856358/46576604-22420c80-c9ce-11e8-9d64-9e5ebcfd7b88.PNG)
-> Index : Pictures from all users, if you're log on you can comment/like these pictures.
+> Index : Pictures from all users, if you're log on you can comment/like these pictures. Including a 6 pictures pagination.
+
+![cap2](https://user-images.githubusercontent.com/32856358/46576666-e90a9c00-c9cf-11e8-9750-7316627931f6.PNG)
+> Profil page : Pictures from a specific user, user's bio, user's likes sum.
