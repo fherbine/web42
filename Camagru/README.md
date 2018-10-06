@@ -10,3 +10,6 @@ and share with everybody on the plateform.
 
 ![cap2](https://user-images.githubusercontent.com/32856358/46576666-e90a9c00-c9cf-11e8-9750-7316627931f6.PNG)
 > Profil page : Pictures from a specific user, user's bio, user's likes sum.
+
+![cap1](https://user-images.githubusercontent.com/32856358/46576699-de9cd200-c9d0-11e8-9c80-9f01a02f0a9b.PNG)
+> Add picture page.
