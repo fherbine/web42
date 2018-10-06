@@ -4,5 +4,5 @@ PHP &amp; web branch @ 42
 
 #### ==================== WHAT YOU CAN FIND HERE ==========================
 
-- [Camagru](Camagru) : Work in progress
-  > An Instagram like website :)
+- [Camagru](Camagru) : An Instagram like website :)
+  > Final grade: **118/100**
